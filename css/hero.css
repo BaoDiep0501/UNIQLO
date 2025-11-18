@@ -1,0 +1,55 @@
+/* HERO.CSS — Fullscreen UNIQLO-style Infinite Slider */
+
+/* ===== Slider Wrapper ===== */
+.hero-slider-wrapper {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ===== Slider Track (scrollable horizontally) ===== */
+.hero-slider {
+  display: block;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100vh;
+  scroll-behavior: smooth;
+  overflow-y: hidden; /* hide scrollbar */
+  position: relative;
+  user-select: none;
+  cursor: grab;
+}
+
+.hero-slider:active {
+  cursor: grabbing;
+}
+
+/* ===== Each Slide ===== */
+.hero-slide {
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* ===== CTA button under slider ===== */
+.hero-cta {
+  width: 100%;
+  text-align: right;
+  position: relative;
+  z-index: 10;
+}
+
+/* Optional shadow overlay (UNIQLO vibe) */
+.hero-slider::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(to top, rgba(0,0,0,0.25), rgba(0,0,0,0));
+  pointer-events: none;
+}

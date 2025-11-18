@@ -1,0 +1,181 @@
+/* ====== 1. FONT SETUP ====== */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500&display=swap');
+
+:root {
+  /* ====== 2. COLOR SYSTEM ====== */
+  --color-primary-red: #e60012; /* UNIQLO Red */
+  --color-neutral-dark: #222;
+  --color-neutral-mid: #555;
+  --color-neutral-light: #f2f2f2;
+  --color-bg: #ffffff;
+  --color-accent-muji: #b33a3a;
+
+  /* ====== 3. TYPOGRAPHY ====== */
+  --font-heading: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* ====== 4. SPACING SYSTEM ====== */
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-xxl: 64px;
+
+  /* ====== 5. CONTAINER WIDTH ====== */
+  --max-width: 1200px;
+}
+
+/* ====== GLOBAL RESET ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-neutral-dark);
+  line-height: 1.5;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ====== 6. CONTAINERS ====== */
+.container {
+  width: 90%;
+  max-width: var(--max-width);
+  margin: auto;
+}
+
+/* ====== 7. HEADER ====== */
+header {
+  width: 100%;
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: backdrop-filter 0.4s ease, background 0.4s ease;
+}
+.header-left,
+.header-center,
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.header-left {
+  justify-content: flex-start;
+}
+
+.header-center {
+  justify-content: center;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* space between logo image and text */
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: 1px;
+}
+
+header .logo img {
+  width: 35px; /* size for UNIQLO square logo */
+  height: auto;
+  display: block;
+}
+
+header .menu-icon {
+  font-size: 20px;
+  cursor: pointer;
+  text-align: right;
+  padding-left: 10px;
+}
+
+.header-hover-zone {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px; /* mở rộng vùng hover */
+  z-index: 999;
+}
+
+.header-hover-zone:hover + header .main-nav, /*hover thì menu hiện ra*/
+header:hover .main-nav {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.main-nav {
+  display: flex;
+  gap: 40px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  position: relative;
+  text-align: center;
+}
+
+.main-nav a {
+  color: white;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 18px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* ====== 8. BUTTON STYLE ====== */
+.btn-primary {
+  display: inline-block;
+  padding: 8px 16px;
+  background: var(--color-primary-red);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: 0.25s ease;
+  font-size: 11px;
+}
+
+.btn-primary:hover {
+  background: var(--color-accent-muji);
+}
+
+/* ====== 9. HERO SECTION PLACEHOLDER ====== */
+.hero {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--color-neutral-dark);
+}
