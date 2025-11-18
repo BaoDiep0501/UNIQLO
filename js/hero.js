@@ -1,5 +1,4 @@
 /* HERO.JS — Infinite LOOP + Vertical Scroll */
-
 $(document).ready(function () {
   const slider = $('#hero-slider');
   const slides = $('.hero-slide');
