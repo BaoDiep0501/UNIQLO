@@ -1,53 +1,383 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UNIQLO - Homepage</title>
-  <link rel="stylesheet" href="css/base.css" />
-  <link rel="stylesheet" href="css/hero.css" />
+  <title>UNIQLO Store - Hero + Shop</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-  <!-- HEADER -->
-    <div class="header-hover-zone"></div>
-    <header>
-        <div class="header-left">
-            <div class="logo">
-                <img src="assets/image/logo/uniqlo.svg" alt="UNIQLO Logo">
-                <img src="assets/image/logo/uniqlo-1.svg" alt="UNIQLO Logo1">
-            </div>
+  <!-- ===== SIDEBAR (CATEGORY) ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <h2>Danh mục</h2>
+      <button id="closeSidebarBtn">&times;</button>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Giới tính</h3>
+      <ul>
+        <li><button class="filter-btn" data-gender="all">Tất cả</button></li>
+        <li><button class="filter-btn" data-gender="female">Nữ</button></li>
+        <li><button class="filter-btn" data-gender="male">Nam</button></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Loại sản phẩm</h3>
+      <ul>
+        <li><button class="filter-btn" data-category="all">Tất cả</button></li>
+        <li><button class="filter-btn" data-category="top">Áo</button></li>
+        <li><button class="filter-btn" data-category="bottom">Quần</button></li>
+        <li><button class="filter-btn" data-category="outer">Áo khoác</button></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-section">
+      <h3>Kích thước</h3>
+      <ul>
+        <li><button class="filter-btn" data-size="S">S</button></li>
+        <li><button class="filter-btn" data-size="M">M</button></li>
+        <li><button class="filter-btn" data-size="L">L</button></li>
+        <li><button class="filter-btn" data-size="XL">XL</button></li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- ===== HEADER ===== -->
+  <header class="main-header">
+  <!-- LEFT: menu + logo -->
+  <div class="header-left">
+    <button id="menuBtn" class="icon-btn menu-btn">☰</button>
+    <div class="logo">UNIQLO</div>
+  </div>
+
+  <!-- CENTER: nav -->
+  <nav class="main-nav">
+    <a href="#" class="nav-link active" data-section="home">Trang chủ</a>
+    <a href="#" class="nav-link" data-section="women">Thời trang nữ</a>
+    <a href="#" class="nav-link" data-section="men">Thời trang nam</a>
+    <a href="#" class="nav-link" data-section="location">Location</a>
+    <a href="#" class="nav-link" data-section="membership">Membership</a>
+  </nav>
+
+  <!-- RIGHT: search + icons -->
+  <div class="header-right">
+    <div class="search-box">
+      <input id="searchInput" type="text" placeholder="Tìm sản phẩm..." />
+    </div>
+
+    <button class="icon-btn" title="Tài khoản">
+      👤
+    </button>
+
+    <!-- nút giỏ hàng chỉ còn icon, vẫn dùng id cartBtn cho JS -->
+    <button class="icon-btn cart-icon-btn" id="cartBtn" title="Giỏ hàng">
+      🛒
+      <span class="cart-count-badge" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+
+  <!-- ===== FILTER BAR ===== -->
+  <div class="filter-bar" style="display:none">
+    <span>Bộ lọc nhanh:</span>
+    <select id="filterCategory">
+      <option value="all">Tất cả loại</option>
+      <option value="top">Áo</option>
+      <option value="bottom">Quần</option>
+      <option value="outer">Áo khoác</option>
+    </select>
+
+    <select id="filterSize">
+      <option value="all">Tất cả size</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+
+    <select id="filterColor">
+      <option value="all">Tất cả màu</option>
+      <option value="black">Đen</option>
+      <option value="white">Trắng</option>
+      <option value="brown">Nâu</option>
+      <option value="beige">Be</option>
+    </select>
+
+    <select id="filterPrice">
+      <option value="all">Tất cả giá</option>
+      <option value="1">Dưới 500k</option>
+      <option value="2">500k - 1 triệu</option>
+      <option value="3">Trên 1 triệu</option>
+    </select>
+  </div>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main>
+    <!-- ===== HOME / HERO SLIDER ===== -->
+    <section id="home" class="page-section active">
+      <div class="hero-slider-wrapper">
+        <div class="hero-slider" id="hero-slider">
+          <!-- Thay ảnh bằng ảnh của bạn -->
+          <div class="hero-slide" style="background-image:url('assets/image/woman/home1.jpg')"></div>
+          <div class="hero-slide" style="background-image:url('assets/image/collection/home2.jpg')"></div>
+          <div class="hero-slide" style="background-image:url('assets/image/event/home3.jpg')"></div>
+          <div class="hero-slide" style="background-image:url('assets/image/woman/home4.jpg')"></div>
+          <div class="hero-slide" style="background-image:url('assets/image/woman/home6.jpg')"></div>
+          <div class="hero-slide" style="background-image:url('assets/image/sale_promotion/home7.jpg')"></div>
+        </div>
+        <div class="hero-cta">
+          <button class="primary-btn" data-section="women">Mua sắm cho NỮ</button>
+          <button class="secondary-btn" data-section="men">Mua sắm cho NAM</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WOMEN SECTION ===== -->
+    <section id="women" class="page-section">
+      <h2>Thời trang nữ</h2>
+      <p class="section-desc">
+        Sản phẩm nữ hiển thị dạng gallery giống UNIQLO.
+      </p>
+      <div id="womenProducts" class="product-grid"></div>
+    </section>
+
+    <!-- ===== MEN SECTION ===== -->
+    <section id="men" class="page-section">
+      <h2>Thời trang nam</h2>
+      <p class="section-desc">
+        Sản phẩm nam với layout gallery, có hiệu ứng hover.
+      </p>
+      <div id="menProducts" class="product-grid"></div>
+    </section>
+
+        <!-- ===== PRODUCT DETAIL SECTION ===== -->
+    <section id="productDetail" class="page-section">
+      <button type="button" id="backToListBtn" class="back-btn">
+        <span class="back-icon">←</span>
+        <span>Quay lại danh sách</span>
+      </button>
+
+      <div class="product-detail-wrapper">
+        <div class="product-detail-images">
+          <div id="detailMainImg" class="detail-main-img">
+            Ảnh chính
+          </div>
+          <div id="detailThumbs" class="detail-thumbs">
+            <!-- JS sẽ thêm các thumbnail vào đây -->
+          </div>
         </div>
 
-        <div class="header-center">
-            <nav class="main-nav">
-                <a href="#">WOMEN</a>
-                <a href="#">MEN</a>
-            </nav>
+        <div class="product-detail-info">
+          <h2 id="detailName">Tên sản phẩm</h2>
+          <div class="detail-price" id="detailPrice">0đ</div>
+
+          <p id="detailDesc">
+            Mô tả sản phẩm sẽ hiển thị ở đây.
+          </p>
+
+          <div class="detail-extra">
+            <p>Màu: <span id="detailColor"></span></p>
+            <p>Size: <span id="detailSize"></span></p>
+            <p>Giới tính: <span id="detailGender"></span></p>
+          </div>
+
+          <button id="detailAddToCart" class="primary-btn">
+            Thêm vào giỏ hàng
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+
+    <!-- ===== LOCATION SECTION ===== -->
+    <section id="location" class="page-section">
+      <h2>Hệ thống cửa hàng tại Việt Nam</h2>
+      <p class="section-desc">
+        Thông tin địa chỉ và khuyến mãi tại từng cửa hàng.
+      </p>
+      <div class="location-grid">
+        <div class="location-card">
+          <h3>UNIQLO Vincom Đồng Khởi - TP.HCM</h3>
+          <p>72 Lê Thánh Tôn, Bến Nghé, Quận 1.</p>
+          <ul>
+            <li>Giảm 10% cho đơn từ 1.000.000đ khi quét QR membership.</li>
+            <li>Miễn phí đổi trả trong 30 ngày.</li>
+          </ul>
         </div>
 
-        <div class="header-right">
-            <a href="#" class="btn-primary small-btn">Let's Shopping</a>
-            <div class="menu-icon">☰</div>
+        <div class="location-card">
+          <h3>UNIQLO Landmark 81 - TP.HCM</h3>
+          <p>Vinhomes Central Park, Bình Thạnh.</p>
+          <ul>
+            <li>Combo áo thun + quần jeans chỉ từ 799.000đ.</li>
+            <li>Ưu đãi đặc biệt cho sinh viên Thứ 6 hằng tuần.</li>
+          </ul>
         </div>
-    </header>
 
+        <div class="location-card">
+          <h3>UNIQLO Vincom Bà Triệu - Hà Nội</h3>
+          <p>191 Bà Triệu, Hai Bà Trưng.</p>
+          <ul>
+            <li>Tặng voucher 100.000đ cho khách mới.</li>
+            <li>Flash sale cuối tuần.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-  <!-- HERO SLIDER (Infinite loop, draggable) -->
-  <div class="hero-slider-wrapper">
-    <div class="hero-slider" id="hero-slider">
-      <div class="hero-slide" style="background-image:url('assets/image/woman/home1.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('assets/image/collection/home2.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('assets/image/event/home3.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('assets/image/woman/home4.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('assets/image/woman/home6.jpg')"></div>
-      <div class="hero-slide" style="background-image:url('assets/image/sale_promotion/home7.jpg')"></div>
+    <!-- ===== CART SECTION ===== -->
+    <section id="cart" class="page-section">
+      <h2>Giỏ hàng</h2>
+      <div id="cartItems"></div>
+      <div id="cartSummary" class="cart-summary"></div>
+      <button id="goToCheckoutBtn" class="primary-btn">Tiếp tục thanh toán</button>
+    </section>
+
+    <!-- ===== CHECKOUT SECTION ===== -->
+    <section id="checkout" class="page-section">
+      <h2>Thanh toán</h2>
+      <p class="section-desc">
+        Điền thông tin, giả lập verify qua email / số điện thoại, chọn phương thức thanh toán.
+      </p>
+      <form id="checkoutForm" class="checkout-form">
+        <div class="form-row">
+          <label>Họ tên *</label>
+          <input type="text" name="name" required />
+        </div>
+        <div class="form-row">
+          <label>Email *</label>
+          <input type="email" name="email" required />
+        </div>
+        <div class="form-row">
+          <label>Số điện thoại *</label>
+          <input type="tel" name="phone" required />
+        </div>
+        <div class="form-row">
+          <label>Địa chỉ giao hàng *</label>
+          <textarea name="address" required></textarea>
+        </div>
+
+        <div class="form-row inline">
+          <label>Phương thức thanh toán</label>
+          <select name="payment">
+            <option value="cod">Thanh toán khi nhận hàng (COD)</option>
+            <option value="card">Thẻ ngân hàng</option>
+            <option value="ewallet">Ví điện tử</option>
+          </select>
+        </div>
+
+        <div class="form-row inline">
+          <label>Mã xác thực (giả lập)</label>
+          <input type="text" id="verifyCode" placeholder="Nhập 6 số" />
+          <button type="button" id="sendCodeBtn" class="secondary-btn small">
+            Gửi mã
+          </button>
+        </div>
+
+        <button type="submit" class="primary-btn">Xác nhận thanh toán</button>
+        <p id="checkoutMessage" class="checkout-message"></p>
+      </form>
+    </section>
+
+    <!-- ===== MEMBERSHIP SECTION ===== -->
+    <section id="membership" class="page-section">
+      <h2>Membership</h2>
+      <p class="section-desc">
+        Đăng ký membership để tích điểm khi mua hàng online / trực tiếp và nhận ưu đãi đặc biệt.
+      </p>
+
+      <div class="membership-layout">
+        <div class="membership-info">
+          <h3>Quyền lợi</h3>
+          <ul>
+            <li>Tích điểm 3% giá trị hóa đơn.</li>
+            <li>Voucher sinh nhật cho thành viên.</li>
+            <li>Ưu tiên nhận thông tin sale và bộ sưu tập mới.</li>
+          </ul>
+        </div>
+
+        <form id="membershipForm" class="membership-form">
+          <h3>Đăng ký Membership</h3>
+          <div class="form-row">
+            <label>Họ tên *</label>
+            <input type="text" name="memName" required />
+          </div>
+          <div class="form-row">
+            <label>Email *</label>
+            <input type="email" name="memEmail" required />
+          </div>
+          <div class="form-row">
+            <label>Ngày sinh</label>
+            <input type="date" name="memDob" />
+          </div>
+          <button type="submit" class="primary-btn">Đăng ký</button>
+          <p id="membershipMessage" class="checkout-message"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== CHAT BOX ===== -->
+  <div class="chat-widget">
+    <button id="chatToggleBtn" class="chat-toggle">Chat</button>
+    <div class="chat-box" id="chatBox">
+      <div class="chat-header">
+        <span>CSKH / AI Chat</span>
+        <button id="closeChatBtn">&times;</button>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="chat-message bot">
+          Xin chào 👋. Mình có thể giúp gì cho bạn về sản phẩm hoặc đơn hàng?
+        </div>
+      </div>
+      <div class="chat-footer">
+        <input type="text" id="chatInput" placeholder="Nhập câu hỏi..." />
+        <button id="chatSendBtn">Gửi</button>
+      </div>
     </div>
   </div>
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-  <!-- Hero Slider Script -->
-  <script src="js/hero.js"></script>
+  <!-- ===== FOOTER ===== -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>UNIQLO Viet Nam</h4>
+        <p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Thông tin</h4>
+        <ul>
+          <li><a href="#">Profile Brand</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Liên hệ</h4>
+        <ul>
+          <li>Email: support@uniqlo.vn</li>
+          <li>Hotline: 1900 0000</li>
+          <li>
+            MXH:
+            <a href="#">Facebook</a> ·
+            <a href="#">Instagram</a> ·
+            <a href="#">YouTube</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 UNIQLO Demo. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- jQuery chỉ để chạy hero slider -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- App JS -->
+  <script src="app.js"></script>
 </body>
 </html>
