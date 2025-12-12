@@ -6,6 +6,7 @@
   <title>UNIQLO Store - Hero + Shop</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
   <!-- ===== SIDEBAR (CATEGORY) ===== -->
   <aside class="sidebar" id="sidebar">
@@ -46,43 +47,44 @@
 
   <!-- ===== HEADER ===== -->
   <header class="main-header">
-  <!-- LEFT: menu + logo -->
-  <div class="header-left">
-    <button id="menuBtn" class="icon-btn menu-btn">☰</button>
-    <div class="logo">UNIQLO</div>
-  </div>
-
-  <!-- CENTER: nav -->
-  <nav class="main-nav">
-    <a href="#" class="nav-link active" data-section="home">Trang chủ</a>
-    <a href="#" class="nav-link" data-section="women">Thời trang nữ</a>
-    <a href="#" class="nav-link" data-section="men">Thời trang nam</a>
-    <a href="#" class="nav-link" data-section="location">Location</a>
-    <a href="#" class="nav-link" data-section="membership">Membership</a>
-  </nav>
-
-  <!-- RIGHT: search + icons -->
-  <div class="header-right">
-    <div class="search-box">
-      <input id="searchInput" type="text" placeholder="Tìm sản phẩm..." />
+    <!-- LEFT: menu + logo -->
+    <div class="header-left">
+      <button id="menuBtn" class="icon-btn menu-btn">☰</button>
+      <div class="logo">UNIQLO</div>
     </div>
 
-    <button class="icon-btn" title="Tài khoản">
-      👤
-    </button>
+    <!-- CENTER: nav -->
+    <nav class="main-nav">
+      <a href="#" class="nav-link active" data-section="home">Trang chủ</a>
+      <a href="#" class="nav-link" data-section="about">Giới thiệu</a>
+      <a href="#" class="nav-link" data-section="women">Thời trang nữ</a>
+      <a href="#" class="nav-link" data-section="men">Thời trang nam</a>
+      <a href="#" class="nav-link" data-section="promo">Khuyến mãi</a>
+      <a href="#" class="nav-link" data-section="location">Location</a>
+      <a href="#" class="nav-link" data-section="contact">Liên hệ</a>
+      <a href="#" class="nav-link" data-section="membership">Membership</a>
+    </nav>
 
-    <!-- nút giỏ hàng chỉ còn icon, vẫn dùng id cartBtn cho JS -->
-    <button class="icon-btn cart-icon-btn" id="cartBtn" title="Giỏ hàng">
-      🛒
-      <span class="cart-count-badge" id="cartCount">0</span>
-    </button>
-  </div>
-</header>
+    <!-- RIGHT: search + icons -->
+    <div class="header-right">
+      <div class="search-box">
+        <input id="searchInput" type="text" placeholder="Tìm sản phẩm." />
+      </div>
 
+      <button class="icon-btn" title="Tài khoản">👤</button>
+
+      <!-- giỏ hàng icon -->
+      <button class="icon-btn cart-icon-btn" id="cartBtn" title="Giỏ hàng">
+        🛒
+        <span class="cart-count-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
 
   <!-- ===== FILTER BAR ===== -->
   <div class="filter-bar" style="display:none">
     <span>Bộ lọc nhanh:</span>
+
     <select id="filterCategory">
       <option value="all">Tất cả loại</option>
       <option value="top">Áo</option>
@@ -120,7 +122,6 @@
     <section id="home" class="page-section active">
       <div class="hero-slider-wrapper">
         <div class="hero-slider" id="hero-slider">
-          <!-- Thay ảnh bằng ảnh của bạn -->
           <div class="hero-slide" style="background-image:url('assets/image/woman/home1.jpg')"></div>
           <div class="hero-slide" style="background-image:url('assets/image/collection/home2.jpg')"></div>
           <div class="hero-slide" style="background-image:url('assets/image/event/home3.jpg')"></div>
@@ -128,6 +129,7 @@
           <div class="hero-slide" style="background-image:url('assets/image/woman/home6.jpg')"></div>
           <div class="hero-slide" style="background-image:url('assets/image/sale_promotion/home7.jpg')"></div>
         </div>
+
         <div class="hero-cta">
           <button class="primary-btn" data-section="women">Mua sắm cho NỮ</button>
           <button class="secondary-btn" data-section="men">Mua sắm cho NAM</button>
@@ -135,70 +137,152 @@
       </div>
     </section>
 
+    <!-- ===== ABOUT / GIỚI THIỆU (2 cột + hover scale ảnh) ===== -->
+    <section id="about" class="page-section">
+      <h2>Giới thiệu</h2>
+      <p class="section-desc">Phong cách tối giản, chất lượng cao, dễ mặc mỗi ngày.</p>
+
+      <div class="about-layout">
+        <div class="about-image" title="Ảnh shop (hover để phóng to nhẹ)">
+          <!-- Bạn đổi ảnh ở CSS .about-image -->
+        </div>
+
+        <div class="about-content">
+          <h3>UNIQLO Viet Nam</h3>
+          <p>
+            Chúng tôi tập trung vào thiết kế tối giản, chất liệu tốt và trải nghiệm mua sắm nhanh gọn.
+            Demo này mô phỏng các trang cơ bản: Home, Giới thiệu, Sản phẩm, Khuyến mãi, Liên hệ.
+          </p>
+
+          <ul class="about-list">
+            <li>Chất liệu: ưu tiên thoải mái, bền và dễ phối.</li>
+            <li>Thiết kế: đơn giản, dễ dùng (mobile-friendly).</li>
+            <li>Dịch vụ: đổi trả & membership (giả lập).</li>
+          </ul>
+
+          <div class="about-actions">
+            <button class="primary-btn" data-section="women">Xem sản phẩm nữ</button>
+            <button class="secondary-btn" data-section="men">Xem sản phẩm nam</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ===== WOMEN SECTION ===== -->
     <section id="women" class="page-section">
       <h2>Thời trang nữ</h2>
-      <p class="section-desc">
-        Sản phẩm nữ hiển thị dạng gallery giống UNIQLO.
-      </p>
+      <p class="section-desc">Sản phẩm nữ hiển thị dạng gallery giống UNIQLO.</p>
       <div id="womenProducts" class="product-grid"></div>
     </section>
 
     <!-- ===== MEN SECTION ===== -->
     <section id="men" class="page-section">
       <h2>Thời trang nam</h2>
-      <p class="section-desc">
-        Sản phẩm nam với layout gallery, có hiệu ứng hover.
-      </p>
+      <p class="section-desc">Sản phẩm nam với layout gallery, có hiệu ứng hover.</p>
       <div id="menProducts" class="product-grid"></div>
     </section>
+ 
+<!-- ===== PRODUCT DETAIL - SHOPEE STYLE (CLEAN) ===== -->
+<section id="productDetail" class="page-section">
+  <button type="button" id="backToListBtn" class="back-btn">
+    <span class="back-icon">←</span> Quay lại
+  </button>
 
-        <!-- ===== PRODUCT DETAIL SECTION ===== -->
-    <section id="productDetail" class="page-section">
-      <button type="button" id="backToListBtn" class="back-btn">
-        <span class="back-icon">←</span>
-        <span>Quay lại danh sách</span>
-      </button>
+  <div class="detail-container">
+    <!-- Ảnh -->
+    <div class="detail-gallery">
+      <div class="detail-main-img">
+        <img src="" alt="Product" id="mainImgElement" />
+      </div>
+      <div class="detail-thumbs" id="detailThumbs"></div>
+    </div>
 
-      <div class="product-detail-wrapper">
-        <div class="product-detail-images">
-          <div id="detailMainImg" class="detail-main-img">
-            Ảnh chính
-          </div>
-          <div id="detailThumbs" class="detail-thumbs">
-            <!-- JS sẽ thêm các thumbnail vào đây -->
-          </div>
+    <!-- Thông tin -->
+    <div class="detail-info">
+      <h1 id="detailName" class="detail-title">Tên sản phẩm</h1>
+
+      <div class="detail-price-box">
+        <span class="detail-price" id="detailPrice">599.000đ</span>
+        <span class="detail-old-price" id="detailOldPrice"></span>
+      </div>
+
+      <div class="detail-meta">
+        Đã bán <span id="detailSold">128</span> • Chưa có đánh giá
+      </div>
+
+      <div class="detail-option">
+        <div class="option-label">Màu sắc</div>
+        <div class="color-options" id="detailColorOptions"></div>
+      </div>
+
+      <div class="detail-option">
+        <div class="option-label">Kích thước</div>
+        <div class="size-options">
+          <button class="size-btn">S</button>
+          <button class="size-btn active">M</button>
+          <button class="size-btn">L</button>
+          <button class="size-btn">XL</button>
         </div>
+      </div>
 
-        <div class="product-detail-info">
-          <h2 id="detailName">Tên sản phẩm</h2>
-          <div class="detail-price" id="detailPrice">0đ</div>
+      <div class="detail-actions">
+        <div class="quantity-box">
+          <button id="qtyMinus">-</button>
+          <input type="text" value="1" id="qtyInput" readonly />
+          <button id="qtyPlus">+</button>
+        </div>
+        <button class="primary-btn large" id="detailAddToCart">Thêm vào giỏ hàng</button>
+        <button class="primary-btn large buy-now">Mua ngay</button>
+      </div>
 
-          <p id="detailDesc">
-            Mô tả sản phẩm sẽ hiển thị ở đây.
-          </p>
+      <div class="detail-desc-box">
+        <h3>Mô tả sản phẩm</h3>
+        <p id="detailDesc">Đang tải...</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-          <div class="detail-extra">
-            <p>Màu: <span id="detailColor"></span></p>
-            <p>Size: <span id="detailSize"></span></p>
-            <p>Giới tính: <span id="detailGender"></span></p>
+    <!-- ===== PROMO / KHUYẾN MÃI (banner + countdown timer JS) ===== -->
+    <section id="promo" class="page-section">
+      <h2>Khuyến mãi</h2>
+      <p class="section-desc">Danh sách các khuyến mãi </p>
+
+      <div class="promo-banner">
+        <div class="promo-banner-content">
+          <h3>Flash Sale cuối tuần</h3>
+          <p>Giảm giá một số sản phẩm chọn lọc. Số lượng có hạn.</p>
+
+          <div class="promo-countdown">
+            <span class="promo-countdown-label">Kết thúc sau:</span>
+            <span id="promoCountdown" class="promo-countdown-time">--:--:--</span>
           </div>
 
-          <button id="detailAddToCart" class="primary-btn">
-            Thêm vào giỏ hàng
-          </button>
+          <button class="primary-btn" data-section="women">Mua ngay</button>
+        </div>
+      </div>
+
+      <div class="promo-list">
+        <div class="promo-item">
+          <h4>Voucher 100.000đ cho khách mới</h4>
+          <p>Áp dụng cho đơn hàng từ 1.000.000đ.</p>
+        </div>
+        <div class="promo-item">
+          <h4>Mua combo áo + quần</h4>
+          <p>Giá tốt hơn khi mua theo set .</p>
+        </div>
+        <div class="promo-item">
+          <h4>Miễn phí đổi trả 30 ngày</h4>
+          <p>Hỗ trợ đổi size/màu trong 30 ngày.</p>
         </div>
       </div>
     </section>
 
-
-
-    <!-- ===== LOCATION SECTION ===== -->
+    <!-- ===== LOCATION ===== -->
     <section id="location" class="page-section">
       <h2>Hệ thống cửa hàng tại Việt Nam</h2>
-      <p class="section-desc">
-        Thông tin địa chỉ và khuyến mãi tại từng cửa hàng.
-      </p>
+      <p class="section-desc">Thông tin địa chỉ và khuyến mãi tại từng cửa hàng.</p>
+
       <div class="location-grid">
         <div class="location-card">
           <h3>UNIQLO Vincom Đồng Khởi - TP.HCM</h3>
@@ -214,7 +298,7 @@
           <p>Vinhomes Central Park, Bình Thạnh.</p>
           <ul>
             <li>Combo áo thun + quần jeans chỉ từ 799.000đ.</li>
-            <li>Ưu đãi đặc biệt cho sinh viên Thứ 6 hằng tuần.</li>
+            <li>Ưu đãi đặc biệt cho sinh viên Thứ 6 hàng tuần.</li>
           </ul>
         </div>
 
@@ -229,114 +313,142 @@
       </div>
     </section>
 
-    <!-- ===== CART SECTION ===== -->
+    <!-- ===== CONTACT / LIÊN HỆ (form + icon + jQuery fadeIn) ===== -->
+    <section id="contact" class="page-section">
+      <h2>Liên hệ</h2>
+      <p class="section-desc">Form đặt hàng / liên hệ nhanh (demo).</p>
+
+      <div class="contact-wrap">
+        <div class="contact-cards">
+          <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-title">Hotline</div>
+              <div class="contact-text">1900 0000</div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">✉️</div>
+            <div>
+              <div class="contact-title">Email</div>
+              <div class="contact-text">support@uniqlo.vn</div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-title">Địa chỉ</div>
+              <div class="contact-text">TP.HCM / Hà Nội (demo)</div>
+            </div>
+          </div>
+        </div>
+
+        <form id="contactForm" class="contact-form">
+          <div class="form-row">
+            <label>Họ và tên</label>
+            <input required type="text" id="contactName" placeholder="Nhập họ tên" />
+          </div>
+
+          <div class="form-row">
+            <label>Số điện thoại</label>
+            <input required type="tel" id="contactPhone" placeholder="Nhập số điện thoại" />
+          </div>
+
+          <div class="form-row">
+            <label>Nội dung</label>
+            <textarea required id="contactMessage" rows="4" placeholder="Bạn cần hỗ trợ gì?"></textarea>
+          </div>
+
+          <button class="primary-btn" type="submit">Gửi yêu cầu</button>
+
+          <div id="contactConfirm" class="contact-confirm" style="display:none;">
+            ✅ Đã nhận yêu cầu! Bên mình sẽ liên hệ sớm (demo).
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== CART ===== -->
     <section id="cart" class="page-section">
       <h2>Giỏ hàng</h2>
       <div id="cartItems"></div>
       <div id="cartSummary" class="cart-summary"></div>
-      <button id="goToCheckoutBtn" class="primary-btn">Tiếp tục thanh toán</button>
+      <button id="goToCheckoutBtn" class="primary-btn" type="button">Thanh toán</button>
     </section>
 
-    <!-- ===== CHECKOUT SECTION ===== -->
+    <!-- ===== CHECKOUT ===== -->
     <section id="checkout" class="page-section">
       <h2>Thanh toán</h2>
-      <p class="section-desc">
-        Điền thông tin, giả lập verify qua email / số điện thoại, chọn phương thức thanh toán.
-      </p>
       <form id="checkoutForm" class="checkout-form">
         <div class="form-row">
-          <label>Họ tên *</label>
-          <input type="text" name="name" required />
+          <label>Họ và tên</label>
+          <input required type="text" placeholder="Nguyễn Văn A" />
         </div>
         <div class="form-row">
-          <label>Email *</label>
-          <input type="email" name="email" required />
+          <label>Email / Số điện thoại</label>
+          <input required type="text" placeholder="email hoặc số điện thoại" />
         </div>
-        <div class="form-row">
-          <label>Số điện thoại *</label>
-          <input type="tel" name="phone" required />
-        </div>
-        <div class="form-row">
-          <label>Địa chỉ giao hàng *</label>
-          <textarea name="address" required></textarea>
-        </div>
-
         <div class="form-row inline">
-          <label>Phương thức thanh toán</label>
-          <select name="payment">
-            <option value="cod">Thanh toán khi nhận hàng (COD)</option>
-            <option value="card">Thẻ ngân hàng</option>
-            <option value="ewallet">Ví điện tử</option>
-          </select>
+          <button id="sendCodeBtn" class="secondary-btn small" type="button">Gửi mã</button>
+          <input required type="text" placeholder="Nhập mã xác thực" />
         </div>
-
-        <div class="form-row inline">
-          <label>Mã xác thực (giả lập)</label>
-          <input type="text" id="verifyCode" placeholder="Nhập 6 số" />
-          <button type="button" id="sendCodeBtn" class="secondary-btn small">
-            Gửi mã
-          </button>
-        </div>
-
-        <button type="submit" class="primary-btn">Xác nhận thanh toán</button>
-        <p id="checkoutMessage" class="checkout-message"></p>
+        <button class="primary-btn" type="submit">Xác nhận thanh toán</button>
+        <div id="checkoutMessage" class="checkout-message"></div>
       </form>
     </section>
 
-    <!-- ===== MEMBERSHIP SECTION ===== -->
+    <!-- ===== MEMBERSHIP ===== -->
     <section id="membership" class="page-section">
       <h2>Membership</h2>
-      <p class="section-desc">
-        Đăng ký membership để tích điểm khi mua hàng online / trực tiếp và nhận ưu đãi đặc biệt.
-      </p>
+      <p class="section-desc">Đăng ký membership để nhận ưu đãi.</p>
 
       <div class="membership-layout">
         <div class="membership-info">
           <h3>Quyền lợi</h3>
           <ul>
-            <li>Tích điểm 3% giá trị hóa đơn.</li>
-            <li>Voucher sinh nhật cho thành viên.</li>
-            <li>Ưu tiên nhận thông tin sale và bộ sưu tập mới.</li>
+            <li>Tích điểm & ưu đãi riêng</li>
+            <li>Nhận thông tin khuyến mãi sớm</li>
+            <li>Hỗ trợ đổi trả nhanh</li>
           </ul>
         </div>
 
         <form id="membershipForm" class="membership-form">
-          <h3>Đăng ký Membership</h3>
           <div class="form-row">
-            <label>Họ tên *</label>
-            <input type="text" name="memName" required />
+            <label>Họ và tên</label>
+            <input required type="text" placeholder="Nhập họ tên" />
           </div>
           <div class="form-row">
-            <label>Email *</label>
-            <input type="email" name="memEmail" required />
+            <label>Email</label>
+            <input required type="email" placeholder="you@email.com" />
           </div>
           <div class="form-row">
-            <label>Ngày sinh</label>
-            <input type="date" name="memDob" />
+            <label>Số điện thoại</label>
+            <input required type="tel" placeholder="090xxxxxxx" />
           </div>
-          <button type="submit" class="primary-btn">Đăng ký</button>
-          <p id="membershipMessage" class="checkout-message"></p>
+          <button class="primary-btn" type="submit">Đăng ký</button>
+          <div id="membershipMessage" class="checkout-message"></div>
         </form>
       </div>
     </section>
   </main>
 
-  <!-- ===== CHAT BOX ===== -->
+  <!-- ===== CHAT WIDGET ===== -->
   <div class="chat-widget">
     <button id="chatToggleBtn" class="chat-toggle">Chat</button>
-    <div class="chat-box" id="chatBox">
+
+    <div id="chatBox" class="chat-box">
       <div class="chat-header">
-        <span>CSKH / AI Chat</span>
-        <button id="closeChatBtn">&times;</button>
+        <span>UNIQLO Chat</span>
+        <button id="closeChatBtn" class="icon-btn" title="Đóng">✕</button>
       </div>
-      <div class="chat-body" id="chatBody">
-        <div class="chat-message bot">
-          Xin chào 👋. Mình có thể giúp gì cho bạn về sản phẩm hoặc đơn hàng?
-        </div>
-      </div>
+
+      <div id="chatBody" class="chat-body"></div>
+
       <div class="chat-footer">
-        <input type="text" id="chatInput" placeholder="Nhập câu hỏi..." />
-        <button id="chatSendBtn">Gửi</button>
+        <input id="chatInput" type="text" placeholder="Nhập tin nhắn..." />
+        <button id="chatSendBtn" type="button">Gửi</button>
       </div>
     </div>
   </div>
@@ -348,36 +460,30 @@
         <h4>UNIQLO Viet Nam</h4>
         <p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
       </div>
+
       <div class="footer-col">
         <h4>Thông tin</h4>
         <ul>
-          <li><a href="#">Profile Brand</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Điều khoản sử dụng</a></li>
+          <li><a href="#" data-section="about">Profile Brand</a></li>
+          <li><a href="#" data-section="membership">Privacy Policy</a></li>
+          <li><a href="#" data-section="contact">Điều khoản sử dụng</a></li>
         </ul>
       </div>
+
       <div class="footer-col">
         <h4>Liên hệ</h4>
-        <ul>
-          <li>Email: support@uniqlo.vn</li>
-          <li>Hotline: 1900 0000</li>
-          <li>
-            MXH:
-            <a href="#">Facebook</a> ·
-            <a href="#">Instagram</a> ·
-            <a href="#">YouTube</a>
-          </li>
-        </ul>
+        <p>Email: support@uniqlo.vn</p>
+        <p>Hotline: 1900 0000</p>
+        <p>MXH: Facebook · Instagram · YouTube</p>
       </div>
     </div>
-    <div class="footer-bottom">
-      &copy; 2025 UNIQLO Demo. All rights reserved.
-    </div>
+
+    <div class="footer-bottom">© 2025 UNIQLO Demo. All rights reserved.</div>
   </footer>
 
-  <!-- jQuery chỉ để chạy hero slider -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <!-- App JS -->
+  <!-- ✅ FIX: nhúng jQuery vì app.js đang dùng $(...) -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
   <script src="app.js"></script>
 </body>
 </html>
