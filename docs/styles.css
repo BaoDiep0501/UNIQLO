@@ -75,7 +75,6 @@ body {
 }
 
 /* ===== HEADER ===== */
-/* ===== HEADER ===== */
 .main-header {
   position: sticky;
   top: 0;
@@ -1362,3 +1361,12 @@ main {
   max-width: 280px;
   margin: 0 auto;
 }
+/* CHỮ HEADER IN HOA VÀ TO HƠN - ĐẸP NHƯ UNIQLO THẬT */
+.nav-link {
+  text-transform: uppercase !important; /* IN HOA toàn bộ */
+  font-size: 1rem !important;           /* to hơn (từ 0.88rem lên 1rem) */
+  font-weight: 600 !important;          /* đậm hơn một chút cho sang */
+  letter-spacing: 0.08em !important;    /* khoảng cách chữ rộng hơn, chuyên nghiệp */
+}
+
+/* Nếu bạn muốn to hơn nữa thì đổi thành 1.1rem hoặc 1.2rem */
