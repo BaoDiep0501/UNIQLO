@@ -389,3 +389,21 @@ closeSidebarBtn.onclick = () => sidebar.classList.remove("open");
 renderProductLists();
 updateCartCount();
 showSection("home");
+// SIDEBAR MỞ/ĐÓNG MƯỢT + OVERLAY ĐEN
+menuBtn.onclick = () => {
+  sidebar.classList.add("open");
+  document.body.classList.add("sidebar-open");
+};
+
+closeSidebarBtn.onclick = () => {
+  sidebar.classList.remove("open");
+  document.body.classList.remove("sidebar-open");
+};
+
+// Đóng sidebar khi bấm overlay
+document.body.addEventListener("click", (e) => {
+  if (sidebar.classList.contains("open") && !sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+    sidebar.classList.remove("open");
+    document.body.classList.remove("sidebar-open");
+  }
+});
