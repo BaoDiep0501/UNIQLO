@@ -1,0 +1,464 @@
+/* === == RESET & BODY == === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background-color: #D6EFFF;
+  color: #1C1C1C;
+  /* NEW: để footer nằm cuối trang */
+  display: flex;
+  flex-direction: column;
+}
+
+/* === == HEADER == === */
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  /* GRID 3 CỘT: trái - giữa - phải giống MUJI */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 2rem;
+  align-items: center;
+
+  padding: 0.75rem 1.5rem;
+  background: #1C1C1C;
+  border-bottom: 1px solid #D6EFFF;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  border: 2px solid #D6EFFF;
+  color: #D6EFFF;
+  padding: 0.15rem 0.45rem;
+  font-size: 1rem;
+}
+
+/* NAV ở giữa, căn giữa giống MUJI */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.main-nav .nav-link {
+  text-decoration: none;
+  color: #D6EFFF;
+  font-size: 0.95rem;
+  padding-bottom: 0.15rem;
+}
+
+.main-nav .nav-link.active {
+  border-bottom: 2px solid #D6EFFF;
+  font-weight: 600;
+}
+
+/* Bên phải: search + icon */
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  min-width: 260px;
+}
+
+.search-box {
+  flex: 1;
+  max-width: 280px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  border: 1px solid #D6EFFF;
+  font-size: 0.85rem;
+  background: #ffffff;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #D6EFFF;
+}
+
+/* badge số sản phẩm trong giỏ */
+.cart-icon-btn {
+  position: relative;
+}
+
+.cart-count-badge {
+  position: absolute;
+  top: -4px;
+  right: -6px;
+  background: #D6EFFF;
+  color: #1C1C1C;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  padding: 0 4px;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* === == MAIN LAYOUT == === */
+main {
+  max-width: 1200px;
+  margin: 1rem auto 3rem;
+  padding: 0 1rem;
+  flex: 1;
+}
+
+.page-section {
+  display: none;
+}
+
+.page-section.active {
+  display: block;
+}
+
+.page-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-desc {
+  font-size: 0.9rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* === == BUTTONS == === */
+.primary-btn,
+.secondary-btn,
+.link-btn {
+  border-radius: 999px;
+  padding: 0.45rem 1.1rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* === == CART == === */
+#cartItems {
+  margin-top: 1rem;
+  background: #D6EFFF;
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #bedfff;
+  font-size: 0.9rem;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
+}
+
+.cart-summary {
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* === == FOOTER == === */
+.main-footer {
+  border-top: 1px solid #bedfff;
+  background: #1C1C1C;
+  color: #D6EFFF;
+  padding: 1.25rem 1.5rem 0.75rem;
+}
+
+.footer-top {
+  max-width: 1200px;
+  margin: 0 auto 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.footer-col h4 {
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+}
+
+.footer-col ul {
+  list-style: none;
+  font-size: 0.85rem;
+}
+
+.footer-col li + li {
+  margin-top: 0.25rem;
+}
+
+.footer-col a {
+  text-decoration: none;
+  color: #D6EFFF;
+}
+
+.footer-bottom {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #bedfff;
+}
+
+/* === == RESPONSIVE == === */
+/* Tablet */
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mobile lớn */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile nhỏ + nav ẩn như cũ */
+@media (max-width: 800px) {
+  .main-nav {
+    display: none;
+  }
+
+  .membership-layout,
+  .product-detail-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Rất nhỏ */
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === == Hover hiển thị giá trên ảnh == === */
+.product-hover {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.product-card:hover .product-hover {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hover-price {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+/* === == COLOR PICKER == === */
+.product-colors {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.3rem 0 0.4rem;
+}
+
+.color-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1.5px solid #aaa;
+}
+
+.color-dot.active {
+  border: 2px solid #1C1C1C;
+}
+
+/* === == SIZE PICKER == === */
+.product-sizes {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 0.5rem;
+}
+
+.size-btn {
+  border: 1px solid #1C1C1C;
+  background: transparent;
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #1C1C1C;
+}
+
+.size-btn.active {
+  background: #1C1C1C;
+  color: #D6EFFF;
+}
+
+/* === = PRODUCT CARD - ẢNH TO + HOVER ĐẸP NHƯ UNIQLO = === */
+.product-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.product-image {
+  position: relative;
+  height: 380px;               /* ảnh to hơn */
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.product-image img {
+  transition: transform 0.6s ease;
+}
+
+.product-image:hover img {
+  transform: scale(1.08);
+}
+
+.product-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+  padding: 1.5rem;
+}
+
+.product-image:hover .product-hover-overlay {
+  opacity: 1;
+}
+
+.hover-content {
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.hover-content span:first-child {
+  font-size: 0.95rem;
+  opacity: 0.9;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.hover-price {
+  font-size: 1.5rem !important;
+  font-weight: 700;
+  color: #fff !important;
+}
+
+/* Giá chính giữa card */
+.product-price-main {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #ee4d2d;
+  margin: 0.8rem 0;
+  text-align: center;
+}
+
+/* Size buttons */
+.product-sizes {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 1rem 0;
+}
+
+.size-btn {
+  width: 42px;
+  height: 42px;
+  border: 2px solid #ddd;
+  background: white;
+  border-radius: 50%;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.size-btn.active,
+.size-btn:hover {
+  background: #1C1C1C;
+  color: white;
+  border-color: #1C1C1C;
+}
+
+.add-cart-btn {
+  width: 100%;
+  padding: 14px;
+  background: #1C1C1C;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: 0.3s;
+}
+
+.add-cart-btn:hover {
+  background: #000;
+}
+.product-image { height: 320px; } /* ảnh nhỏ lại vừa đẹp */
+/* LÀM ẢNH TRONG DANH SÁCH NHỎ LẠI VỪA ĐẸP (CHỈ 1 DÒNG DUY NHẤT) */
+.product-image {
+  height: 260px !important;   /* Thử 240px → 280px tùy ý bạn, 260px là đẹp nhất */
+}
+
+/* Nếu bạn thấy ảnh vẫn hơi to thì thêm dòng này để card nhỏ gọn hơn */
+.product-card {
+  max-width: 280px;
+  margin: 0 auto;
+}
+/* CHỮ HEADER IN HOA VÀ TO HƠN - ĐẸP NHƯ UNIQLO THẬT */
+.nav-link {
+  text-transform: uppercase !important; /* IN HOA toàn bộ */
+  font-size: 1rem !important;           /* to hơn (từ 0.88rem lên 1rem) */
+  font-weight: 600 !important;          /* đậm hơn một chút cho sang */
+  letter-spacing: 0.08em !important;    /* khoảng cách chữ rộng hơn, chuyên nghiệp */
+}
+
+/* Nếu bạn muốn to hơn nữa thì đổi thành 1.1rem hoặc 1.2rem */
+
+/* ===== PAGE WRAPPER ===== */
+.page-container { max-width: 1200px; margin: 1rem auto 3rem; padding: 0 1rem; flex: 1; }

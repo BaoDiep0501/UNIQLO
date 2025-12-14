@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UNIQLO Store - Chi tiết sản phẩm</title>
+
+
+<link href="css/common.css" rel="stylesheet"/><link href="css/product-detail.css" rel="stylesheet"/></head>
+<body data-page="product-detail">
+<!-- ===== HEADER ===== -->
+<header class="main-header">
+<div class="header-left">
+<div class="logo">UNIQLO</div>
+</div>
+<nav class="main-nav">
+<a class="nav-link" data-page="home" href="index.html">Trang chủ</a>
+<a class="nav-link" data-page="about" href="about.html">Giới thiệu</a>
+<a class="nav-link" data-page="products" href="products.html">Sản phẩm</a>
+<a class="nav-link" data-page="promo" href="promo.html">Khuyến mãi</a>
+<a class="nav-link" data-page="contact" href="contact.html">Liên hệ</a>
+</nav>
+<div class="header-right">
+<button class="icon-btn" title="Tài khoản" type="button">👤</button>
+<button class="icon-btn cart-icon-btn" id="cartBtn" title="Giỏ hàng" type="button">
+        🛒 <span class="cart-count-badge" id="cartCount">0</span>
+</button>
+</div>
+</header>
+<main class="page-container">
+<section>
+<button class="back-btn" id="backToListBtn" type="button">
+<span class="back-icon">←</span> Quay lại
+  </button>
+<div class="detail-container">
+<div class="detail-gallery">
+<div class="detail-main-img">
+<img alt="Product" id="mainImgElement" src=""/>
+</div>
+<div class="detail-thumbs" id="detailThumbs"></div>
+</div>
+<div class="detail-info">
+<h1 class="detail-title" id="detailName">Tên sản phẩm</h1>
+<div class="detail-price-box">
+<span class="detail-price" id="detailPrice">0đ</span>
+<span class="detail-old-price" id="detailOldPrice"></span>
+</div>
+<div class="detail-meta">
+        Đã bán <span id="detailSold">0</span> • Chưa có đánh giá
+      </div>
+<div class="detail-option">
+<div class="option-label">Màu sắc</div>
+<div class="color-options" id="detailColorOptions"></div>
+</div>
+<div class="detail-option">
+<div class="option-label">Kích thước</div>
+<div class="size-options">
+<button class="size-btn">S</button>
+<button class="size-btn active">M</button>
+<button class="size-btn">L</button>
+<button class="size-btn">XL</button>
+</div>
+</div>
+<div class="detail-actions">
+<div class="quantity-box">
+<button id="qtyMinus" type="button">-</button>
+<input id="qtyInput" readonly="" type="text" value="1"/>
+<button id="qtyPlus" type="button">+</button>
+</div>
+<button class="primary-btn large" id="detailAddToCart" type="button">Thêm vào giỏ hàng</button>
+<button class="primary-btn large buy-now" type="button">Mua ngay</button>
+</div>
+<div class="detail-desc-box">
+<h3>Mô tả sản phẩm</h3>
+<p id="detailDesc">Đang tải...</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- ===== FOOTER ===== -->
+<footer class="main-footer">
+<div class="footer-top">
+<div class="footer-col">
+<h4>UNIQLO Viet Nam</h4>
+<p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
+</div>
+<div class="footer-col">
+<h4>Thông tin</h4>
+<ul>
+<li><a href="about.html">Profile Brand</a></li>
+<li><a href="contact.html">Điều khoản sử dụng</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Liên hệ</h4>
+<p>Email: support@uniqlo.vn</p>
+<p>Hotline: 1900 0000</p>
+<p>MXH: Facebook · Instagram · YouTube</p>
+</div>
+</div>
+<div class="footer-bottom">© 2025 UNIQLO Demo. All rights reserved.</div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/products-data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/product-detail.js"></script>
+</body>
+</html>

@@ -1,19 +1,18 @@
-/* ===== Slider Wrapper ===== */
+/* === HERO SLIDER (theo file hero.css) === */
 .hero-slider-wrapper {
-  width: 100%;
+  width: 100vw;                     /* full màn hình, kể cả vượt container */
+  margin-left: calc(50% - 50vw);
   height: 100vh;
   overflow: hidden;
   position: relative;
 }
 
-/* ===== Slider Track (scrollable horizontally) ===== */
 .hero-slider {
   display: block;
-  flex-wrap: nowrap;
   width: 100%;
   height: 100vh;
   scroll-behavior: smooth;
-  overflow-y: hidden; /* hide scrollbar */
+  overflow-y: scroll;               /* để script dùng scrollTop vertical */
   position: relative;
   user-select: none;
   cursor: grab;
@@ -23,7 +22,6 @@
   cursor: grabbing;
 }
 
-/* ===== Each Slide ===== */
 .hero-slide {
   width: 100%;
   height: 100vh;
@@ -32,15 +30,15 @@
   background-repeat: no-repeat;
 }
 
-/* ===== CTA button under slider ===== */
 .hero-cta {
   width: 100%;
   text-align: right;
   position: relative;
   z-index: 10;
+  margin-top: -3rem;
+  padding: 0 2rem 1.5rem;
 }
 
-/* Optional shadow overlay (UNIQLO vibe) */
 .hero-slider::after {
   content: "";
   position: absolute;

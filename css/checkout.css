@@ -1,0 +1,53 @@
+/* === == CHECKOUT / MEMBERSHIP FORMS == === */
+.checkout-form,
+.membership-form {
+  margin-top: 1rem;
+  background: #D6EFFF;
+  border-radius: 0.75rem;
+  padding: 1rem;
+}
+
+.form-row {
+  margin-bottom: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-row.inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.form-row label {
+  font-size: 0.85rem;
+}
+
+.form-row input,
+.form-row textarea,
+.form-row select {
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid #1C1C1C;
+  font-size: 0.9rem;
+}
+
+.checkout-message {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #0b7a0b;
+}
+
+.membership-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.membership-info {
+  background: #D6EFFF;
+  border-radius: 0.75rem;
+  padding: 1rem;
+}

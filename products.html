@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UNIQLO Store - Sản phẩm</title>
+
+
+<link href="css/common.css" rel="stylesheet"/><link href="css/products.css" rel="stylesheet"/></head>
+<body data-page="products">
+<!-- ===== HEADER ===== -->
+<header class="main-header">
+<div class="header-left">
+<div class="logo">UNIQLO</div>
+</div>
+<nav class="main-nav">
+<a class="nav-link" data-page="home" href="index.html">Trang chủ</a>
+<a class="nav-link" data-page="about" href="about.html">Giới thiệu</a>
+<a class="nav-link" data-page="products" href="products.html">Sản phẩm</a>
+<a class="nav-link" data-page="promo" href="promo.html">Khuyến mãi</a>
+<a class="nav-link" data-page="contact" href="contact.html">Liên hệ</a>
+</nav>
+<div class="header-right">
+<button class="icon-btn" title="Tài khoản" type="button">👤</button>
+<button class="icon-btn cart-icon-btn" id="cartBtn" title="Giỏ hàng" type="button">
+        🛒 <span class="cart-count-badge" id="cartCount">0</span>
+</button>
+</div>
+</header>
+<div class="filter-bar">
+<div class="filter-title">Bộ lọc nhanh:</div>
+<div class="filter-select">
+<select id="filterCategory">
+<option value="all">Tất cả loại</option>
+<option value="top">Áo</option>
+<option value="bottom">Quần</option>
+<option value="outer">Áo khoác</option>
+</select>
+</div>
+<div class="filter-select">
+<select id="filterSize">
+<option value="all">Tất cả size</option>
+<option value="S">S</option>
+<option value="M">M</option>
+<option value="L">L</option>
+<option value="XL">XL</option>
+</select>
+</div>
+<div class="filter-select">
+<select id="filterColor">
+<option value="all">Tất cả màu</option>
+<option value="den">Đen</option>
+<option value="trang">Trắng</option>
+<option value="nau">Nâu</option>
+<option value="xam">Xám</option>
+<option value="be">Be</option>
+</select>
+</div>
+<div class="filter-select">
+<select id="filterPrice">
+<option value="all">Tất cả giá</option>
+<option value="1">Dưới 500.000đ</option>
+<option value="2">500.000đ - 1.000.000đ</option>
+<option value="3">Trên 1.000.000đ</option>
+</select>
+</div>
+<button class="filter-clear-btn" id="clearFilters" type="button">Xóa lọc</button>
+</div>
+<main class="page-container">
+<section>
+<h2>Sản phẩm</h2>
+<p class="section-desc">Gộp Nam/Nữ trong 1 trang. Dùng dropdown để chọn.</p>
+<div class="products-toolbar">
+<label for="genderSelect"><strong>Chọn:</strong></label>
+<select id="genderSelect">
+<option value="all">Tất cả</option>
+<option value="female">Thời trang nữ</option>
+<option value="male">Thời trang nam</option>
+</select>
+</div>
+<div class="product-grid" id="productsGrid"></div>
+</section>
+</main>
+<!-- ===== FOOTER ===== -->
+<footer class="main-footer">
+<div class="footer-top">
+<div class="footer-col">
+<h4>UNIQLO Viet Nam</h4>
+<p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
+</div>
+<div class="footer-col">
+<h4>Thông tin</h4>
+<ul>
+<li><a href="about.html">Profile Brand</a></li>
+<li><a href="contact.html">Điều khoản sử dụng</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Liên hệ</h4>
+<p>Email: support@uniqlo.vn</p>
+<p>Hotline: 1900 0000</p>
+<p>MXH: Facebook · Instagram · YouTube</p>
+</div>
+</div>
+<div class="footer-bottom">© 2025 UNIQLO Demo. All rights reserved.</div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/products-data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>

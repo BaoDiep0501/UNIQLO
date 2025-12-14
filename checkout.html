@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>UNIQLO Store - Thanh toán</title>
+
+
+<link href="css/common.css" rel="stylesheet"/><link href="css/checkout.css" rel="stylesheet"/></head>
+<body data-page="checkout">
+<!-- ===== HEADER ===== -->
+<header class="main-header">
+<div class="header-left">
+<div class="logo">UNIQLO</div>
+</div>
+<nav class="main-nav">
+<a class="nav-link" data-page="home" href="index.html">Trang chủ</a>
+<a class="nav-link" data-page="about" href="about.html">Giới thiệu</a>
+<a class="nav-link" data-page="products" href="products.html">Sản phẩm</a>
+<a class="nav-link" data-page="promo" href="promo.html">Khuyến mãi</a>
+<a class="nav-link" data-page="contact" href="contact.html">Liên hệ</a>
+</nav>
+<div class="header-right">
+<button class="icon-btn" title="Tài khoản" type="button">👤</button>
+<button class="icon-btn cart-icon-btn" id="cartBtn" title="Giỏ hàng" type="button">
+        🛒 <span class="cart-count-badge" id="cartCount">0</span>
+</button>
+</div>
+</header>
+<main class="page-container">
+<section>
+<h2>Thanh toán</h2>
+<div id="cartItems"></div>
+<div class="cart-summary" id="cartSummary"></div>
+<form class="checkout-form" id="checkoutForm">
+<div class="form-row">
+<label>Họ và tên</label>
+<input placeholder="Nguyễn Văn A" required="" type="text"/>
+</div>
+<div class="form-row">
+<label>Email / Số điện thoại</label>
+<input placeholder="email hoặc số điện thoại" required="" type="text"/>
+</div>
+<div class="form-row inline">
+<button class="secondary-btn small" id="sendCodeBtn" type="button">Gửi mã</button>
+<input placeholder="Nhập mã xác thực" required="" type="text"/>
+</div>
+<button class="primary-btn" type="submit">Xác nhận thanh toán</button>
+<div class="checkout-message" id="checkoutMessage"></div>
+</form>
+</section>
+</main>
+<!-- ===== FOOTER ===== -->
+<footer class="main-footer">
+<div class="footer-top">
+<div class="footer-col">
+<h4>UNIQLO Viet Nam</h4>
+<p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
+</div>
+<div class="footer-col">
+<h4>Thông tin</h4>
+<ul>
+<li><a href="about.html">Profile Brand</a></li>
+<li><a href="contact.html">Điều khoản sử dụng</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Liên hệ</h4>
+<p>Email: support@uniqlo.vn</p>
+<p>Hotline: 1900 0000</p>
+<p>MXH: Facebook · Instagram · YouTube</p>
+</div>
+</div>
+<div class="footer-bottom">© 2025 UNIQLO Demo. All rights reserved.</div>
+</footer>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="js/products-data.js"></script>
+<script src="js/common.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>
