@@ -60,9 +60,7 @@
       <a href="#" class="nav-link" data-section="women">Thời trang nữ</a>
       <a href="#" class="nav-link" data-section="men">Thời trang nam</a>
       <a href="#" class="nav-link" data-section="promo">Khuyến mãi</a>
-      <a href="#" class="nav-link" data-section="location">Location</a>
       <a href="#" class="nav-link" data-section="contact">Liên hệ</a>
-      <a href="#" class="nav-link" data-section="membership">Membership</a>
     </nav>
 
     <!-- RIGHT: search + icons -->
@@ -81,17 +79,20 @@
     </div>
   </header>
 
-  <!-- ===== FILTER BAR ===== -->
-  <div class="filter-bar" style="display:none">
-    <span>Bộ lọc nhanh:</span>
-
+  <!-- THANH FILTER ĐẸP NHƯ UNIQLO THẬT (Dropdown mượt, nút Xóa lọc) -->
+<div class="filter-bar">
+  <div class="filter-title">Bộ lọc nhanh:</div>
+  
+  <div class="filter-select">
     <select id="filterCategory">
       <option value="all">Tất cả loại</option>
       <option value="top">Áo</option>
       <option value="bottom">Quần</option>
       <option value="outer">Áo khoác</option>
     </select>
-
+  </div>
+  
+  <div class="filter-select">
     <select id="filterSize">
       <option value="all">Tất cả size</option>
       <option value="S">S</option>
@@ -99,22 +100,30 @@
       <option value="L">L</option>
       <option value="XL">XL</option>
     </select>
-
+  </div>
+  
+  <div class="filter-select">
     <select id="filterColor">
       <option value="all">Tất cả màu</option>
-      <option value="black">Đen</option>
-      <option value="white">Trắng</option>
-      <option value="brown">Nâu</option>
-      <option value="beige">Be</option>
-    </select>
-
-    <select id="filterPrice">
-      <option value="all">Tất cả giá</option>
-      <option value="1">Dưới 500k</option>
-      <option value="2">500k - 1 triệu</option>
-      <option value="3">Trên 1 triệu</option>
+      <option value="den">Đen</option>
+      <option value="trang">Trắng</option>
+      <option value="nau">Nâu</option>
+      <option value="xam">Xám</option>
+      <option value="be">Be</option>
     </select>
   </div>
+  
+  <div class="filter-select">
+    <select id="filterPrice">
+      <option value="all">Tất cả giá</option>
+      <option value="1">Dưới 500.000đ</option>
+      <option value="2">500.000đ - 1.000.000đ</option>
+      <option value="3">Trên 1.000.000đ</option>
+    </select>
+  </div>
+  
+  <button class="filter-clear-btn" id="clearFilters">Xóa lọc</button>
+</div>
 
   <!-- ===== MAIN CONTENT ===== -->
   <main>
@@ -171,14 +180,14 @@
     <!-- ===== WOMEN SECTION ===== -->
     <section id="women" class="page-section">
       <h2>Thời trang nữ</h2>
-      <p class="section-desc">Sản phẩm nữ hiển thị dạng gallery giống UNIQLO.</p>
+      
       <div id="womenProducts" class="product-grid"></div>
     </section>
 
     <!-- ===== MEN SECTION ===== -->
     <section id="men" class="page-section">
       <h2>Thời trang nam</h2>
-      <p class="section-desc">Sản phẩm nam với layout gallery, có hiệu ứng hover.</p>
+      
       <div id="menProducts" class="product-grid"></div>
     </section>
  
@@ -278,40 +287,6 @@
       </div>
     </section>
 
-    <!-- ===== LOCATION ===== -->
-    <section id="location" class="page-section">
-      <h2>Hệ thống cửa hàng tại Việt Nam</h2>
-      <p class="section-desc">Thông tin địa chỉ và khuyến mãi tại từng cửa hàng.</p>
-
-      <div class="location-grid">
-        <div class="location-card">
-          <h3>UNIQLO Vincom Đồng Khởi - TP.HCM</h3>
-          <p>72 Lê Thánh Tôn, Bến Nghé, Quận 1.</p>
-          <ul>
-            <li>Giảm 10% cho đơn từ 1.000.000đ khi quét QR membership.</li>
-            <li>Miễn phí đổi trả trong 30 ngày.</li>
-          </ul>
-        </div>
-
-        <div class="location-card">
-          <h3>UNIQLO Landmark 81 - TP.HCM</h3>
-          <p>Vinhomes Central Park, Bình Thạnh.</p>
-          <ul>
-            <li>Combo áo thun + quần jeans chỉ từ 799.000đ.</li>
-            <li>Ưu đãi đặc biệt cho sinh viên Thứ 6 hàng tuần.</li>
-          </ul>
-        </div>
-
-        <div class="location-card">
-          <h3>UNIQLO Vincom Bà Triệu - Hà Nội</h3>
-          <p>191 Bà Triệu, Hai Bà Trưng.</p>
-          <ul>
-            <li>Tặng voucher 100.000đ cho khách mới.</li>
-            <li>Flash sale cuối tuần.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
     <!-- ===== CONTACT / LIÊN HỆ (form + icon + jQuery fadeIn) ===== -->
     <section id="contact" class="page-section">
@@ -399,39 +374,7 @@
       </form>
     </section>
 
-    <!-- ===== MEMBERSHIP ===== -->
-    <section id="membership" class="page-section">
-      <h2>Membership</h2>
-      <p class="section-desc">Đăng ký membership để nhận ưu đãi.</p>
-
-      <div class="membership-layout">
-        <div class="membership-info">
-          <h3>Quyền lợi</h3>
-          <ul>
-            <li>Tích điểm & ưu đãi riêng</li>
-            <li>Nhận thông tin khuyến mãi sớm</li>
-            <li>Hỗ trợ đổi trả nhanh</li>
-          </ul>
-        </div>
-
-        <form id="membershipForm" class="membership-form">
-          <div class="form-row">
-            <label>Họ và tên</label>
-            <input required type="text" placeholder="Nhập họ tên" />
-          </div>
-          <div class="form-row">
-            <label>Email</label>
-            <input required type="email" placeholder="you@email.com" />
-          </div>
-          <div class="form-row">
-            <label>Số điện thoại</label>
-            <input required type="tel" placeholder="090xxxxxxx" />
-          </div>
-          <button class="primary-btn" type="submit">Đăng ký</button>
-          <div id="membershipMessage" class="checkout-message"></div>
-        </form>
-      </div>
-    </section>
+    
   </main>
 
   <!-- ===== CHAT WIDGET ===== -->
