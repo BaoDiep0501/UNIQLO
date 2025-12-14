@@ -4,6 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <title>UNIQLO Store - Giới thiệu</title>
 
 
@@ -22,10 +24,15 @@
 <a class="nav-link" data-page="contact" href="contact.html">Liên hệ</a>
 </nav>
 <div class="header-right">
-<button class="icon-btn" title="Tài khoản" type="button">👤</button>
 <button class="icon-btn cart-icon-btn" id="cartBtn" title="Giỏ hàng" type="button">
-        🛒 <span class="cart-count-badge" id="cartCount">0</span>
+  <i class="fa-solid fa-bag-shopping"></i>
+  <span class="cart-count-badge" id="cartCount">0</span>
 </button>
+</div>
+</header>
+<main class="page-container">
+<section>
+
 </div>
 </header>
 <main class="page-container">
@@ -55,29 +62,33 @@
 </div>
 </section>
 </main>
-<!-- ===== FOOTER ===== -->
-<footer class="main-footer">
-<div class="footer-top">
-<div class="footer-col">
-<h4>UNIQLO Viet Nam</h4>
-<p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
-</div>
-<div class="footer-col">
-<h4>Thông tin</h4>
-<ul>
-<li><a href="about.html">Profile Brand</a></li>
-<li><a href="contact.html">Điều khoản sử dụng</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h4>Liên hệ</h4>
-<p>Email: support@uniqlo.vn</p>
-<p>Hotline: 1900 0000</p>
-<p>MXH: Facebook · Instagram · YouTube</p>
-</div>
-</div>
-<div class="footer-bottom">© 2025 UNIQLO Demo. All rights reserved.</div>
-</footer>
+  <!-- ===== FOOTER ===== -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>UNIQLO Viet Nam</h4>
+        <p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Thông tin</h4>
+        <ul>
+          <li><a href="#" data-section="about">Profile Brand</a></li>
+          <li><a href="#" data-section="membership">Privacy Policy</a></li>
+          <li><a href="#" data-section="contact">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Liên hệ</h4>
+        <p>Email: support@uniqlo.vn</p>
+        <p>Hotline: 1900 0000</p>
+        <p>MXH: Facebook · Instagram · YouTube</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2025 UNIQLO Demo. All rights reserved.</div>
+  </footer>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="js/products-data.js"></script>
 <script src="js/common.js"></script>

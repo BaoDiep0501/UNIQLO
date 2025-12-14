@@ -36,18 +36,27 @@
       $("detailName").textContent = "Không tìm thấy sản phẩm";
       return;
     }
-
+    
     $("detailName").textContent = p.name;
     $("detailPrice").textContent = formatPrice(p.price);
     $("detailOldPrice").textContent = p.oldPrice ? formatPrice(p.oldPrice) : "";
     $("detailDesc").textContent = p.description || "—";
     $("detailSold").textContent = Math.floor(Math.random()*400)+50;
 
-    // main img
+    /* ===== MAIN IMAGE ===== */
     const main = $("mainImgElement");
-    main.src = p.images?.[0] || "";
 
-    // thumbs
+    const colorIds = Array.isArray(p.colorIds) ? p.colorIds : [];
+    const imagesByColor = p.imagesByColor || {};
+
+    // ảnh mặc định theo màu đầu tiên
+    if (colorIds[0] && imagesByColor[colorIds[0]]) {
+      main.src = imagesByColor[colorIds[0]];
+    } else {
+      main.src = p.images?.[0] || "";
+    }
+
+    /* ===== THUMBS (giữ nguyên, không ảnh hưởng màu) ===== */
     const thumbs = $("detailThumbs");
     thumbs.innerHTML = "";
     (p.images || []).forEach((src, i)=>{
@@ -61,23 +70,36 @@
       thumbs.appendChild(div);
     });
 
-    // colors (demo)
+    /* ===== COLORS (SOLID DOT + CLICK ĐỔI ẢNH) ===== */
     const colorWrap = $("detailColorOptions");
     colorWrap.innerHTML = "";
-    const demoColors = ["#95a5a6", "#2c3e50", "#8b4513", "#bdc3c7"];
-    demoColors.forEach((c,i)=>{
+
+    const COLOR_MAP = window.COLOR_MAP || {};
+    const fallbackIds = ["xam","den","nau","trang"];
+    const idsToUse = colorIds.length ? colorIds : fallbackIds;
+
+    idsToUse.forEach((id, i) => {
+      const c = COLOR_MAP[id];
+      if (!c) return;
+
       const b = document.createElement("div");
-      b.className = "color-btn" + (i===0 ? " active":"");
-      b.style.backgroundColor = c;
-      if(p.images?.[i]) b.innerHTML = `<img src="${p.images[i]}" alt="color">`;
-      b.onclick = ()=>{
+      b.className = "color-btn" + (i === 0 ? " active" : "");
+      b.style.backgroundColor = c.hex;   // ✅ màu trơn
+      b.title = c.name;
+
+      b.onclick = () => {
         setActive("#detailColorOptions .color-btn", b);
-        if(p.images?.[i]) main.src = p.images[i];
+
+        // ✅ đổi ảnh theo màu
+        if (imagesByColor[id]) {
+          main.src = imagesByColor[id];
+        }
       };
+
       colorWrap.appendChild(b);
     });
 
-    // size selection
+    /* ===== SIZE ===== */
     document.querySelectorAll(".size-options .size-btn").forEach(btn=>{
       btn.onclick = (e)=>{
         e.preventDefault();
@@ -85,13 +107,14 @@
       };
     });
 
-    // back
+    /* ===== BACK ===== */
     const back = $("backToListBtn");
     back.onclick = ()=>{
+      sessionStorage.setItem("fromProductDetail", "1");
       window.location.href = `products.html?gender=${encodeURIComponent(p.gender)}`;
     };
 
-    // add to cart
+    /* ===== ADD TO CART ===== */
     $("detailAddToCart").onclick = ()=>{
       const activeSize = document.querySelector(".size-options .size-btn.active");
       const size = activeSize ? activeSize.textContent.trim() : "M";
@@ -101,7 +124,7 @@
       alert(`Đã thêm ${p.name} - Size ${size} ×${qty} vào giỏ hàng!`);
     };
 
-    // buy now
+    /* ===== BUY NOW ===== */
     const buyBtn = document.querySelector(".buy-now");
     if(buyBtn){
       buyBtn.onclick = ()=>{

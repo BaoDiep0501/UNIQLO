@@ -1,8 +1,11 @@
 /* ===== PRODUCTS PAGE ===== */
-(function(){
+(function () {
   const products = window.PRODUCTS || [];
   const grid = document.getElementById("productsGrid");
-  const genderSelect = document.getElementById("genderSelect");
+  const genderButtons = document.querySelectorAll(".gender-btn");
+
+  // state duy nhất (KHÔNG khai báo lại ở dưới)
+  let currentGender = "all";
 
   const filterCategory = document.getElementById("filterCategory");
   const filterSize = document.getElementById("filterSize");
@@ -10,19 +13,65 @@
   const filterPrice = document.getElementById("filterPrice");
   const clearFilters = document.getElementById("clearFilters");
 
-  function getQueryParam(name){
+  function getQueryParam(name) {
     const url = new URL(window.location.href);
     return url.searchParams.get(name) || "";
   }
 
-  function createCard(p){
+  function formatPrice(v) {
+    // fallback nếu common.js chưa có
+    try {
+      return v.toLocaleString("vi-VN") + "đ";
+    } catch {
+      return String(v) + "đ";
+    }
+  }
+
+  // Chuẩn hoá so sánh (tránh lệch den/Đen/đen...)
+  function normalizeText(s) {
+    return (s || "")
+      .toString()
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+
+  function normalizeColorValue(val) {
+    // val từ select: den/trang/nau/xam/be
+    const v = normalizeText(val);
+    const map = {
+      den: "den",
+      trang: "trang",
+      nau: "nau",
+      xam: "xam",
+      be: "be",
+    };
+    return map[v] || v;
+  }
+
+  function normalizeProductColor(val) {
+    // val từ data: có thể là "Đen", "đen", "black", "trang", ...
+    const v = normalizeText(val);
+
+    // map phổ biến
+    if (v.includes("den") || v.includes("black")) return "den";
+    if (v.includes("trang") || v.includes("white")) return "trang";
+    if (v.includes("nau") || v.includes("brown")) return "nau";
+    if (v.includes("xam") || v.includes("grey") || v.includes("gray")) return "xam";
+    if (v === "be" || v.includes("beige")) return "be";
+
+    return v; // fallback
+  }
+
+  function createCard(p) {
     const card = document.createElement("div");
     card.className = "product-card";
 
     const imgDiv = document.createElement("div");
     imgDiv.className = "product-image";
     imgDiv.innerHTML = `
-      <img src="${p.images?.[0] || 'https://via.placeholder.com/400'}"
+      <img src="${p.images?.[0] || "https://via.placeholder.com/400"}"
            alt="${p.name}"
            style="width:100%; height:100%; object-fit:cover; border-radius:12px; transition:transform .4s;">
       <div class="product-hover-overlay">
@@ -32,7 +81,7 @@
         </div>
       </div>
     `;
-    imgDiv.addEventListener("click", ()=>{
+    imgDiv.addEventListener("click", () => {
       window.location.href = "product-detail.html?id=" + encodeURIComponent(p.id);
     });
 
@@ -53,23 +102,23 @@
       <button class="add-cart-btn">Thêm vào giỏ hàng</button>
     `;
 
-    info.querySelector(".product-name").addEventListener("click", ()=>{
+    info.querySelector(".product-name").addEventListener("click", () => {
       window.location.href = "product-detail.html?id=" + encodeURIComponent(p.id);
     });
 
-    let selectedSize = "M"; // default internal
-    info.querySelectorAll(".size-btn").forEach(btn=>{
-      btn.addEventListener("click",(e)=>{
+    let selectedSize = "M";
+    info.querySelectorAll(".size-btn").forEach((btn) => {
+      btn.addEventListener("click", (e) => {
         e.stopPropagation();
-        info.querySelectorAll(".size-btn").forEach(b=>b.classList.remove("active"));
+        info.querySelectorAll(".size-btn").forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
         selectedSize = btn.dataset.size;
       });
     });
 
-    info.querySelector(".add-cart-btn").addEventListener("click",(e)=>{
+    info.querySelector(".add-cart-btn").addEventListener("click", (e) => {
       e.stopPropagation();
-      window.CartStore.add({ id: p.id, size: selectedSize, qty: 1 });
+      window.CartStore?.add?.({ id: p.id, size: selectedSize, qty: 1 });
       alert(`Đã thêm "${p.name}" - Size ${selectedSize} vào giỏ hàng!`);
     });
 
@@ -78,65 +127,94 @@
     return card;
   }
 
-  function matchPrice(p, priceKey){
-    if(priceKey === "all") return true;
-    if(priceKey === "1") return p.price < 500000;
-    if(priceKey === "2") return p.price >= 500000 && p.price <= 1000000;
-    if(priceKey === "3") return p.price > 1000000;
+  function matchPrice(p, priceKey) {
+    if (priceKey === "all") return true;
+    if (priceKey === "1") return p.price < 500000;
+    if (priceKey === "2") return p.price >= 500000 && p.price <= 1000000;
+    if (priceKey === "3") return p.price > 1000000;
     return true;
   }
 
-  function apply(){
-    const gender = genderSelect.value; // all / female / male
-    const cat = filterCategory.value;
-    const size = filterSize.value;
-    const color = filterColor.value;
-    const price = filterPrice.value;
-    const q = (getQueryParam("q") || "").toLowerCase();
+  function setActiveGenderButton() {
+    genderButtons.forEach((b) => b.classList.remove("active"));
+    document.querySelector(`.gender-btn[data-gender="${currentGender}"]`)?.classList.add("active");
+  }
 
-    const list = products.filter(p=>{
-      if(gender !== "all" && p.gender !== gender) return false;
-      if(cat !== "all" && p.category !== cat) return false;
-      if(!matchPrice(p, price)) return false;
-      if(q && !p.name.toLowerCase().includes(q)) return false;
+  function apply() {
+    if (!grid) return;
 
-      // size + color: demo data chưa có đầy đủ -> cho pass nếu không có field
-      if(size !== "all" && p.sizes && !p.sizes.includes(size)) return false;
-      if(color !== "all" && p.color && p.color !== color) return false;
+    const cat = filterCategory?.value || "all";
+    const size = filterSize?.value || "all";
+    const color = filterColor?.value || "all";
+    const price = filterPrice?.value || "all";
+    const q = normalizeText(getQueryParam("q"));
+
+    const list = products.filter((p) => {
+      // gender
+      if (currentGender !== "all" && p.gender !== currentGender) return false;
+
+      // category
+      if (cat !== "all" && p.category !== cat) return false;
+
+      // price
+      if (!matchPrice(p, price)) return false;
+
+      // search q
+      if (q && !normalizeText(p.name).includes(q)) return false;
+
+      // size
+      if (size !== "all" && Array.isArray(p.sizes) && !p.sizes.includes(size)) return false;
+
+      // color filter theo colorIds
+      if (color !== "all") {
+     const ids = Array.isArray(p.colorIds) ? p.colorIds : [];
+       if (!ids.includes(color)) return false;
+      }
+
+
       return true;
     });
 
     grid.innerHTML = "";
-    if(list.length === 0){
+    if (list.length === 0) {
       grid.innerHTML = `<p>Không có sản phẩm phù hợp.</p>`;
       return;
     }
-    list.forEach(p=> grid.appendChild(createCard(p)));
+    list.forEach((p) => grid.appendChild(createCard(p)));
   }
 
-  function resetFilters(){
-    filterCategory.value = "all";
-    filterSize.value = "all";
-    filterColor.value = "all";
-    filterPrice.value = "all";
+  function resetFilters() {
+    if (filterCategory) filterCategory.value = "all";
+    if (filterSize) filterSize.value = "all";
+    if (filterColor) filterColor.value = "all";
+    if (filterPrice) filterPrice.value = "all";
     apply();
   }
 
-  document.addEventListener("DOMContentLoaded", ()=>{
-    // show filter bar on this page
-    const filterBar = document.querySelector(".filter-bar");
-    if(filterBar) filterBar.style.display = "flex";
-
-    // init dropdown by url param gender if any
+  document.addEventListener("DOMContentLoaded", () => {
+    // init gender từ URL param nếu có: ?gender=female|male|all
     const g = getQueryParam("gender");
-    if(g && ["female","male","all"].includes(g)) genderSelect.value = g;
+    if (g && ["female", "male", "all"].includes(g)) {
+      currentGender = g;
+    }
+    setActiveGenderButton();
 
-    // if coming from home buttons via hash (optional)
-    apply();
+    // bind gender (CHỈ 1 LẦN)
+    genderButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        currentGender = btn.dataset.gender || "all";
+        setActiveGenderButton();
+        apply();
+      });
+    });
 
-    [genderSelect, filterCategory, filterSize, filterColor, filterPrice].forEach(el=>{
-      el.addEventListener("change", apply);
+    // bind filters
+    [filterCategory, filterSize, filterColor, filterPrice].forEach((el) => {
+      el?.addEventListener("change", apply);
     });
     clearFilters?.addEventListener("click", resetFilters);
+
+    // first render
+    apply();
   });
 })();

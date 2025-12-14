@@ -107,6 +107,7 @@ body {
 
 /* badge số sản phẩm trong giỏ */
 .cart-icon-btn {
+   font-size: 1.5rem;
   position: relative;
 }
 

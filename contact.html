@@ -1,108 +1,187 @@
 <!DOCTYPE html>
-
 <html lang="vi">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>UNIQLO Store - Liên hệ</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <title>UNIQLO Store - Liên hệ & Đặt hàng</title>
 
+  <link href="css/common.css" rel="stylesheet" />
+  <link href="css/contact.css" rel="stylesheet" />
+</head>
 
-<link href="css/common.css" rel="stylesheet"/><link href="css/contact.css" rel="stylesheet"/></head>
 <body data-page="contact">
-<!-- ===== HEADER ===== -->
-<header class="main-header">
-<div class="header-left">
-<div class="logo">UNIQLO</div>
+  <!-- HEADER (giữ nguyên) -->
+  <header class="main-header">
+    <div class="header-left">
+      <div class="logo">UNIQLO</div>
+    </div>
+
+    <nav class="main-nav">
+      <a class="nav-link" data-page="home" href="index.html">Trang chủ</a>
+      <a class="nav-link" data-page="about" href="about.html">Giới thiệu</a>
+      <a class="nav-link" data-page="products" href="products.html">Sản phẩm</a>
+      <a class="nav-link" data-page="promo" href="promo.html">Khuyến mãi</a>
+      <a class="nav-link" data-page="contact" href="contact.html">Liên hệ</a>
+    </nav>
+
+    <div class="header-right">
+      <button class="icon-btn cart-icon-btn" id="cartBtn" title="Giỏ hàng">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-count-badge" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero-section">
+   
+    <div class="intro-tabs-wrap">
+  <div class="intro-tabs">
+    <div class="intro-tab active">
+         <h1>Liên hệ & Đặt hàng</h1>
+      Chúng tôi sẵn sàng hỗ trợ tư vấn đặt hàng, size, hoặc bất kỳ thắc mắc nào. Gửi yêu cầu ngay!
+    </div>
+  </div>
 </div>
-<nav class="main-nav">
-<a class="nav-link" data-page="home" href="index.html">Trang chủ</a>
-<a class="nav-link" data-page="about" href="about.html">Giới thiệu</a>
-<a class="nav-link" data-page="products" href="products.html">Sản phẩm</a>
-<a class="nav-link" data-page="promo" href="promo.html">Khuyến mãi</a>
-<a class="nav-link" data-page="contact" href="contact.html">Liên hệ</a>
-</nav>
-<div class="header-right">
-<button class="icon-btn" title="Tài khoản" type="button">👤</button>
-<button class="icon-btn cart-icon-btn" id="cartBtn" title="Giỏ hàng" type="button">
-        🛒 <span class="cart-count-badge" id="cartCount">0</span>
-</button>
-</div>
-</header>
-<main class="page-container">
-<section>
-<h2>Liên hệ</h2>
-<p class="section-desc">Form đặt hàng / liên hệ nhanh (demo).</p>
-<div class="contact-wrap">
-<div class="contact-cards">
-<div class="contact-card">
-<div class="contact-icon">📞</div>
-<div>
-<div class="contact-title">Hotline</div>
-<div class="contact-text">1900 0000</div>
-</div>
-</div>
-<div class="contact-card">
-<div class="contact-icon">✉️</div>
-<div>
-<div class="contact-title">Email</div>
-<div class="contact-text">support@uniqlo.vn</div>
-</div>
-</div>
-<div class="contact-card">
-<div class="contact-icon">📍</div>
-<div>
-<div class="contact-title">Địa chỉ</div>
-<div class="contact-text">TP.HCM / Hà Nội (demo)</div>
-</div>
-</div>
-</div>
-<form class="contact-form" id="contactForm">
-<div class="form-row">
-<label>Họ và tên</label>
-<input id="contactName" placeholder="Nhập họ tên" required="" type="text"/>
-</div>
-<div class="form-row">
-<label>Số điện thoại</label>
-<input id="contactPhone" placeholder="Nhập số điện thoại" required="" type="tel"/>
-</div>
-<div class="form-row">
-<label>Nội dung</label>
-<textarea id="contactMessage" placeholder="Bạn cần hỗ trợ gì?" required="" rows="4"></textarea>
-</div>
-<button class="primary-btn" type="submit">Gửi yêu cầu</button>
-<div class="contact-confirm" id="contactConfirm" style="display:none;">
-        ✅ Đã nhận yêu cầu! Bên mình sẽ liên hệ sớm (demo).
+
+  </section>
+
+  <main class="page-container">
+    <section class="contact-wrap">
+      <!-- Thông tin liên hệ -->
+      <div class="contact-info">
+        <h2 class="h2-red h2-18">Thông tin liên hệ</h2>
+
+        <div class="contact-cards">
+  <div class="contact-card">
+    <div class="contact-icon"><i class="fa-solid fa-building"></i></div>
+    <div>
+      <div class="contact-title">Trụ sở chính</div>
+      <div class="contact-text">
+        UNIQLO Việt Nam<br>
+        26 Lý Tự Trọng, Bến Nghé, Quận 1, TP.HCM
       </div>
+    </div>
+  </div>
+
+  <div class="contact-card">
+    <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+    <div>
+      <div class="contact-title">Hotline</div>
+      <div class="contact-text">
+        1900 0000 (8:30 - 18:00)<br>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-card">
+    <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+    <div>
+      <div class="contact-title">Email hỗ trợ</div>
+      <div class="contact-text">
+        support@uniqlo-demo.vn<br>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-card">
+    <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+    <div>
+      <div class="contact-title">Giờ làm việc</div>
+      <div class="contact-text">
+        Thứ 2 - Thứ 6: 9:00 - 18:00<br>
+        Thứ 7 - CN: 9:00 - 12:00
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        <h2 class="h2-red h2-18 h2-mt-2">Theo dõi chúng tôi</h2>
+
+        <div class="social-links">
+          <a href="https://www.facebook.com/uniqlovnam" target="_blank"><i class="fab fa-facebook fa-3x"></i></a>
+          <a href="https://www.instagram.com/uniqlovnam" target="_blank"><i class="fab fa-instagram fa-3x"></i></a>
+          <a href="https://www.tiktok.com/@uniqlovnam" target="_blank"><i class="fab fa-tiktok fa-3x"></i></a>
+          <a href="https://www.youtube.com/uniqlovnam" target="_blank"><i class="fab fa-youtube fa-3x"></i></a>
+          <a href="https://zalo.me/uniqlovn" target="_blank"><i class="fas fa-comment-dots fa-3x"></i></a>
+        </div>
+
+        <div class="map-embed map-mt-2">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.447109978199!2d106.700454!3d10.778488!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f62a3f9b8cb%3A0x4f88e0c4b50b8a0!2sUNIQLO%20Dong%20Khoi!5e0!3m2!1svi!2s!4v1734000000000"
+            width="100%" height="350" allowfullscreen="" loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Form đặt hàng demo -->
+      <form class="contact-form" id="contactForm">
+  <h2 style="color: #FF0000; font-size: 1.8rem;">Form đặt hàng nhanh </h2>
+  <p style="font-size: 1rem;">Để lại thông tin, chúng tôi sẽ thêm sản phẩm vào giỏ và hỗ trợ thanh toán nhanh!</p>
+  <div class="form-row">
+  <label for="contactName">Họ và tên *</label>
+  <input id="contactName" placeholder="Nguyễn Văn A" required type="text" />
+</div>
+
+<div class="form-row">
+  <label for="contactPhone">Số điện thoại *</label>
+  <input id="contactPhone" placeholder="090xxxxxxx" required type="tel" pattern="[0-9]{9,11}" />
+</div>
+
+<div class="form-row">
+  <label for="contactEmail">Email (nếu có)</label>
+  <input id="contactEmail" placeholder="example@email.com" type="email" />
+</div>
+<div class="form-row">
+  <label for="contactProduct">Sản phẩm quan tâm *</label>
+  <input id="contactProduct" placeholder="Ví dụ: Áo thun AIRism, size M, màu đỏ" required type="text" />
+</div>
+<div class="form-row">
+  <label for="contactMessage">Ghi chú thêm</label>
+  <textarea id="contactMessage" placeholder="Số lượng, màu sắc, size, hoặc câu hỏi..." rows="4"></textarea>
+</div>
+
+  <button class="primary-btn cart-proceed-btn" >Tiến đến giỏ hàng để thanh toán</button>
+  <div class="contact-confirm" id="contactConfirm">
+    <i class="fas fa-check-circle"></i> Đã lưu thông tin! Đang chuyển đến giỏ hàng... (demo)
+  </div>
 </form>
-</div>
-</section>
-</main>
-<!-- ===== FOOTER ===== -->
-<footer class="main-footer">
-<div class="footer-top">
-<div class="footer-col">
-<h4>UNIQLO Viet Nam</h4>
-<p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
-</div>
-<div class="footer-col">
-<h4>Thông tin</h4>
-<ul>
-<li><a href="about.html">Profile Brand</a></li>
-<li><a href="contact.html">Điều khoản sử dụng</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h4>Liên hệ</h4>
-<p>Email: support@uniqlo.vn</p>
-<p>Hotline: 1900 0000</p>
-<p>MXH: Facebook · Instagram · YouTube</p>
-</div>
-</div>
-<div class="footer-bottom">© 2025 UNIQLO Demo. All rights reserved.</div>
-</footer>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="js/products-data.js"></script>
-<script src="js/common.js"></script>
-<script src="js/contact.js"></script>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>UNIQLO Viet Nam</h4>
+        <p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Thông tin</h4>
+        <ul>
+          <li><a href="#" data-section="about">Profile Brand</a></li>
+          <li><a href="#" data-section="membership">Privacy Policy</a></li>
+          <li><a href="#" data-section="contact">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Liên hệ</h4>
+        <p>Email: support@uniqlo.vn</p>
+        <p>Hotline: 1900 0000</p>
+        <p>MXH: Facebook · Instagram · YouTube</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2025 UNIQLO Demo. All rights reserved.</div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/contact.js"></script>
 </body>
 </html>

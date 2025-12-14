@@ -4,6 +4,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <title>UNIQLO Store - Sản phẩm</title>
 
 
@@ -22,89 +24,89 @@
 <a class="nav-link" data-page="contact" href="contact.html">Liên hệ</a>
 </nav>
 <div class="header-right">
-<button class="icon-btn" title="Tài khoản" type="button">👤</button>
 <button class="icon-btn cart-icon-btn" id="cartBtn" title="Giỏ hàng" type="button">
-        🛒 <span class="cart-count-badge" id="cartCount">0</span>
+  <i class="fa-solid fa-bag-shopping"></i>
+  <span class="cart-count-badge" id="cartCount">0</span>
 </button>
 </div>
 </header>
-<div class="filter-bar">
-<div class="filter-title">Bộ lọc nhanh:</div>
-<div class="filter-select">
-<select id="filterCategory">
-<option value="all">Tất cả loại</option>
-<option value="top">Áo</option>
-<option value="bottom">Quần</option>
-<option value="outer">Áo khoác</option>
-</select>
-</div>
-<div class="filter-select">
-<select id="filterSize">
-<option value="all">Tất cả size</option>
-<option value="S">S</option>
-<option value="M">M</option>
-<option value="L">L</option>
-<option value="XL">XL</option>
-</select>
-</div>
-<div class="filter-select">
-<select id="filterColor">
-<option value="all">Tất cả màu</option>
-<option value="den">Đen</option>
-<option value="trang">Trắng</option>
-<option value="nau">Nâu</option>
-<option value="xam">Xám</option>
-<option value="be">Be</option>
-</select>
-</div>
-<div class="filter-select">
-<select id="filterPrice">
-<option value="all">Tất cả giá</option>
-<option value="1">Dưới 500.000đ</option>
-<option value="2">500.000đ - 1.000.000đ</option>
-<option value="3">Trên 1.000.000đ</option>
-</select>
-</div>
-<button class="filter-clear-btn" id="clearFilters" type="button">Xóa lọc</button>
-</div>
 <main class="page-container">
 <section>
-<h2>Sản phẩm</h2>
-<p class="section-desc">Gộp Nam/Nữ trong 1 trang. Dùng dropdown để chọn.</p>
-<div class="products-toolbar">
-<label for="genderSelect"><strong>Chọn:</strong></label>
-<select id="genderSelect">
-<option value="all">Tất cả</option>
-<option value="female">Thời trang nữ</option>
-<option value="male">Thời trang nam</option>
-</select>
+
 </div>
-<div class="product-grid" id="productsGrid"></div>
-</section>
+</header>
+<main class="page-container">
+  <section>
+    <!-- Thanh chọn Tất cả / Nữ / Nam -->
+    <div class="gender-bar">
+      <button class="gender-btn active" data-gender="all">Tất cả</button>
+      <button class="gender-btn" data-gender="female">Thời trang nữ</button>
+      <button class="gender-btn" data-gender="male">Thời trang nam</button>
+    </div>
+
+    <!-- Thanh bộ lọc chi tiết (mới, đẹp hơn) -->
+    <div class="filter-bar">
+      <div class="filter-title">Bộ lọc:</div>
+      <select id="filterCategory">
+        <option value="all">Tất cả loại</option>
+        <option value="top">Áo</option>
+        <option value="bottom">Quần</option>
+        <option value="outer">Áo khoác</option>
+      </select>
+      <select id="filterSize">
+        <option value="all">Tất cả size</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <select id="filterColor">
+        <option value="all">Tất cả màu</option>
+        <option value="den">Đen</option>
+        <option value="trang">Trắng</option>
+        <option value="nau">Nâu</option>
+        <option value="xam">Xám</option>
+        <option value="be">Be</option>
+      </select>
+      <select id="filterPrice">
+        <option value="all">Tất cả giá</option>
+        <option value="1">Dưới 500.000đ</option>
+        <option value="2">500.000đ - 1.000.000đ</option>
+        <option value="3">Trên 1.000.000đ</option>
+      </select>
+      <button class="filter-clear-btn" id="clearFilters">Xóa lọc</button>
+    </div>
+
+    <div class="product-grid" id="productsGrid"></div>
+  </section>
 </main>
-<!-- ===== FOOTER ===== -->
-<footer class="main-footer">
-<div class="footer-top">
-<div class="footer-col">
-<h4>UNIQLO Viet Nam</h4>
-<p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
-</div>
-<div class="footer-col">
-<h4>Thông tin</h4>
-<ul>
-<li><a href="about.html">Profile Brand</a></li>
-<li><a href="contact.html">Điều khoản sử dụng</a></li>
-</ul>
-</div>
-<div class="footer-col">
-<h4>Liên hệ</h4>
-<p>Email: support@uniqlo.vn</p>
-<p>Hotline: 1900 0000</p>
-<p>MXH: Facebook · Instagram · YouTube</p>
-</div>
-</div>
-<div class="footer-bottom">© 2025 UNIQLO Demo. All rights reserved.</div>
-</footer>
+  <!-- ===== FOOTER ===== -->
+  <footer class="main-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>UNIQLO Viet Nam</h4>
+        <p>Thời trang đơn giản, chất lượng cao, phù hợp cho mọi người.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Thông tin</h4>
+        <ul>
+          <li><a href="#" data-section="about">Profile Brand</a></li>
+          <li><a href="#" data-section="membership">Privacy Policy</a></li>
+          <li><a href="#" data-section="contact">Điều khoản sử dụng</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Liên hệ</h4>
+        <p>Email: support@uniqlo.vn</p>
+        <p>Hotline: 1900 0000</p>
+        <p>MXH: Facebook · Instagram · YouTube</p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">© 2025 UNIQLO Demo. All rights reserved.</div>
+  </footer>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="js/products-data.js"></script>
 <script src="js/common.js"></script>
