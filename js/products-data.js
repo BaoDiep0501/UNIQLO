@@ -23,7 +23,7 @@ window.PRODUCTS = [
     colorIds:["trang","den","be",],imagesByColor: { trang:"assets/f061.webp",den:"assets/f062.webp",be:"assets/f063.webp" }, images: ["assets/f061.webp","assets/f062.webp","assets/f063.webp"], description: "Co giãn tốt, form slim tôn dáng." },
   { id: 7, name: "Chân Váy", gender: "female", category: "bottom", price: 799000,oldPrice: 1099000,
     colorIds:["xam","den",],imagesByColor: { xam:"assets/f071.webp",den:"assets/f072.webp"}, images: ["assets/f071.webp","assets/f072.webp"], description: "Co giãn tốt, form slim tôn dáng." },
-    { id: 8, name: "Áo", gender: "female", category: "top", price: 799000,oldPrice: 1099000,
+    { id: 8, name: "Áo Thắt Eo", gender: "female", category: "top", price: 799000,oldPrice: 1099000,
     colorIds:["nau","xam","xanh",],imagesByColor: { nau:"assets/f081.webp",xam:"assets/f082.webp",xanh:"assets/f083.webp"}, images: ["assets/f081.webp","assets/f082.webp","assets/f083.webp"], description: "Co giãn tốt, form slim tôn dáng." },
   { id: 9, name: "Quần Jean", gender: "female", category: "bottom", price: 799000,oldPrice: 1099000,
     colorIds:["be","den"],imagesByColor: { be:"assets/f091.webp", den:"assets/f092.webp"}, images: ["assets/f091.webp","assets/f092.webp"], description: "Co giãn tốt, form slim tôn dáng." },
@@ -34,9 +34,14 @@ window.PRODUCTS = [
     { id: 12, name: "Áo Trễ Vai", gender: "female", category: "top", price: 799000,oldPrice: 1099000,
     colorIds:["den"],images: ["assets/f131.webp"], description: "Co giãn tốt, form slim tôn dáng." },
   { id: 13, name: "HEATTECH pha cashmere", gender: "female", category: "top", price: 799000,oldPrice: 1099000,
+<<<<<<< HEAD
     colorIds:["nau","trang", "xam","do","xanh"],imagesByColor: {nau:"assets/1/brown.avif", trang:"assets/1/white.avif", xam:"assets/1/darkgrey.avif",do:"assets/1/red.avif",xanh: "assets/1/navi.avif"}
     ,images: ["assets/f132.avif","assets/1/white.avif","assets/1/darkgrey.avif","assets/1/red.avif","assets/1/darkgrey.avif"], description: "Phong cách tinh tế, ôm dáng, mỏng nhưng sợi vải chặt, co giãn tốt giúp giữ ấm cực tốt với công nghệ HEATTECH độc quyền. " },
   { id: 14, name: "Áo khoác phao ngắn không đường may", gender: "female", category: "outer", price: 799000,oldPrice: 1099000,
+    colorIds:["nau","trang", "xam","do","xanh"],imagesByColor: {nau:"assets/f132.avif", trang:"assets/1/white.jpg", xam:"assets/1/darkgrey.jpg",do:"assets/1/red.jpg",xanh: "assets/1/navi.jpg"}
+    ,images: ["assets/f132.avif","assets/1/white.jpg","assets/1/darkgrey.jpg","assets/1/red.jpg","assets/1/darkgrey.jpg"], description: "Phong cách tinh tế, ôm dáng, mỏng nhưng sợi vải chặt, co giãn tốt giúp giữ ấm cực tốt với công nghệ HEATTECH độc quyền. " },
+  { id: 14, name: "Áo khoác phao ngắn không đường may", gender: "female", category: "top", price: 799000,oldPrice: 1099000,
+>>>>>>> 2464e00 (Fix category filter)
     colorIds:["xam"],images: ["assets/f133.avif"], description: "Giữ ấm cho mùa đông với phong cách năng động, tinh tế"},
 
   { id: 21, name: "Jacket ", gender: "male", category: "outer", price: 1199000, oldPrice: 1699000,
