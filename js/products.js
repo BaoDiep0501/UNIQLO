@@ -37,41 +37,27 @@
       .replace(/[\u0300-\u036f]/g, "");
   }
 
-  function normalizeColorValue(val) {
-    // val từ select: den/trang/nau/xam/be
-    const v = normalizeText(val);
-    const map = {
-      den: "den",
-      trang: "trang",
-      nau: "nau",
-      xam: "xam",
-      be: "be",
-    };
-    return map[v] || v;
+  // ✅ helper: lấy ảnh theo màu filter (nếu có), fallback về ảnh đầu
+  function getMainImgByColor(p, activeColor) {
+    if (activeColor && activeColor !== "all") {
+      const byColor = p.imagesByColor || {};
+      if (byColor[activeColor]) return byColor[activeColor];
+    }
+    return p.images?.[0] || "https://via.placeholder.com/400";
   }
 
-  function normalizeProductColor(val) {
-    // val từ data: có thể là "Đen", "đen", "black", "trang", ...
-    const v = normalizeText(val);
-
-    // map phổ biến
-    if (v.includes("den") || v.includes("black")) return "den";
-    if (v.includes("trang") || v.includes("white")) return "trang";
-    if (v.includes("nau") || v.includes("brown")) return "nau";
-    if (v.includes("xam") || v.includes("grey") || v.includes("gray")) return "xam";
-    if (v === "be" || v.includes("beige")) return "be";
-
-    return v; // fallback
-  }
-
-  function createCard(p) {
+  // ✅ nhận thêm activeColor để đổi ảnh chính theo màu đang lọc
+  function createCard(p, activeColor) {
     const card = document.createElement("div");
     card.className = "product-card";
 
     const imgDiv = document.createElement("div");
     imgDiv.className = "product-image";
+
+    const imgSrc = getMainImgByColor(p, activeColor);
+
     imgDiv.innerHTML = `
-      <img src="${p.images?.[0] || "https://via.placeholder.com/400"}"
+      <img src="${imgSrc}"
            alt="${p.name}"
            style="width:100%; height:100%; object-fit:cover; border-radius:12px; transition:transform .4s;">
       <div class="product-hover-overlay">
@@ -87,9 +73,13 @@
 
     const info = document.createElement("div");
     info.className = "product-info";
+
+    // hiển thị text màu: ưu tiên colorIds nếu có
+    const colorText = Array.isArray(p.colorIds) && p.colorIds.length ? "Nhiều màu" : (p.color || "Nhiều màu");
+
     info.innerHTML = `
       <h3 class="product-name">${p.name}</h3>
-      <div class="product-meta">${p.gender === "female" ? "Nữ" : "Nam"} · ${p.color || "Nhiều màu"}</div>
+      <div class="product-meta">${p.gender === "female" ? "Nữ" : "Nam"} · ${colorText}</div>
       <div class="product-price-main">${formatPrice(p.price)}</div>
 
       <div class="product-sizes">
@@ -139,6 +129,12 @@
     genderButtons.forEach((b) => b.classList.remove("active"));
     document.querySelector(`.gender-btn[data-gender="${currentGender}"]`)?.classList.add("active");
   }
+  function normalizeCategoryKey(val) {
+  const v = normalizeText(val);
+  // chỉ chấp nhận 3 loại bạn đang dùng
+  if (v === "top" || v === "bottom" || v === "outer") return v;
+  return v; // fallback
+}
 
   function apply() {
     if (!grid) return;
@@ -154,7 +150,11 @@
       if (currentGender !== "all" && p.gender !== currentGender) return false;
 
       // category
-      if (cat !== "all" && p.category !== cat) return false;
+      if (cat !== "all") {
+    const pc = normalizeCategoryKey(p.category);
+    const fc = normalizeCategoryKey(cat);
+    if (pc !== fc) return false;
+    }
 
       // price
       if (!matchPrice(p, price)) return false;
@@ -165,12 +165,11 @@
       // size
       if (size !== "all" && Array.isArray(p.sizes) && !p.sizes.includes(size)) return false;
 
-      // color filter theo colorIds
+      // ✅ color filter theo colorIds
       if (color !== "all") {
-     const ids = Array.isArray(p.colorIds) ? p.colorIds : [];
-       if (!ids.includes(color)) return false;
+        const ids = Array.isArray(p.colorIds) ? p.colorIds : [];
+        if (!ids.includes(color)) return false;
       }
-
 
       return true;
     });
@@ -180,7 +179,9 @@
       grid.innerHTML = `<p>Không có sản phẩm phù hợp.</p>`;
       return;
     }
-    list.forEach((p) => grid.appendChild(createCard(p)));
+
+    // ✅ truyền màu đang lọc vào createCard để đổi ảnh chính
+    list.forEach((p) => grid.appendChild(createCard(p, color)));
   }
 
   function resetFilters() {

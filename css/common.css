@@ -463,3 +463,9 @@ main {
 
 /* ===== PAGE WRAPPER ===== */
 .page-container { max-width: 1200px; margin: 1rem auto 3rem; padding: 0 1rem; flex: 1; }
+
+/* FORCE footer full width dù bị bọc trong container */
+.main-footer{
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+}
