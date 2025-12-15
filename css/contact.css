@@ -1,199 +1,68 @@
-/* ===== TÁCH TỪ contact.html (hero + carousel) ===== */
-.hero-section{
-  background: transparent;   
-  padding: 2.2rem 0 1.2rem;  
-  border-bottom: none;      
+/* ================== VARIABLES ================== */
+:root{
+  --primary: rgb(17, 40, 82);
+  --text-dark: #111;
+  --text-gray: #555;
+  --bg-light: #fff;
+  --shadow-soft: 0 10px 30px rgba(0,0,0,.08);
 }
 
-/* Nếu bạn không còn dùng hero-section h1,p riêng (vì đặt trong intro-tab) thì có thể giữ lại như dưới cho an toàn */
-.hero-section h1 { font-size: 2.8rem; color:rgb(17, 40, 82); }
-.hero-section p  { font-size: 1.2rem; color: #555; max-width: 800px; margin: 1rem auto; }
+/* ================== HERO + CAROUSEL ================== */
+.hero-section{
+  background: transparent;
+  padding: 2.2rem 0 1.2rem;
+}
 
-.carousel {
+.hero-section h1{
+  font-size: 2.8rem;
+  color: var(--primary);
+}
+
+.hero-section p{
+  font-size: 1.2rem;
+  color: var(--text-gray);
+  max-width: 800px;
+  margin: 1rem auto;
+}
+
+.carousel{
   display: flex;
-  overflow-x: auto;
   gap: 1rem;
+  overflow-x: auto;
   margin: 2rem 0;
   padding-bottom: 1rem;
-  scrollbar-width: thin;
 }
-.carousel img {
-  border-radius: 1rem;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+
+.carousel img{
   max-height: 300px;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,.1);
   flex-shrink: 0;
 }
 
-/* ===== CSS CŨ CỦA BẠN (giữ nguyên) ===== */
-.contact-wrap {
+/* ================== CONTACT LAYOUT ================== */
+.contact-wrap{
   margin-top: 2rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
 }
 
-.contact-info {
-  background: #fff;
+@media (max-width: 900px){
+  .contact-wrap{
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+/* ================== CONTACT INFO ================== */
+.contact-info{
+  background: var(--bg-light);
   padding: 1.8rem;
   border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: var(--shadow-soft);
 }
 
-.contact-card {
-  display: flex;
-  align-items: center;
-  gap: 1.2rem;
-  padding: 1.2rem;
-  background: #f9f9f9;
-  border-radius: 1rem;
-  margin-bottom: 1rem;
-  transition: transform 0.3s;
-}
-.contact-card:hover { transform: translateY(-4px); }
-
-.contact-icon {
-  width: 50px;
-  height: 50px;
-  background: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  box-shadow: 0 4px 12px rgba(255,0,0,0.1);
-}
-
-/* icon đỏ (thay cho style inline) */
-.contact-icon i { color:rgb(17, 40, 82); }
-.social-links i { color:rgb(17, 40, 82); }
-
-.social-links {
-  display: flex;
-  gap: 1.8rem;
-  justify-content: center;
-  margin: 1.8rem 0;
-}
-.social-links i { font-size: 2rem; }
-
-.contact-form {
-  background: #fff;
-  border-radius: 1rem;
-  padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-}
-
-.contact-form label {
-  font-size: 0.95rem;
-  margin-bottom: 0.4rem;
-}
-
-.contact-form input,
-.contact-form textarea {
-  font-size: 1rem;
-  padding: 0.8rem 1rem;
-}
-
-.contact-form textarea { resize: vertical; }
-
-.contact-confirm {
-  margin-top: 1.2rem;
-  background: #e6f7ff;
-  color: #0066cc;
-  padding: 1rem;
-  border-radius: 0.8rem;
-  font-weight: bold;
-  text-align: center;
-  display: none;
-}
-
-.primary-btn {
-  background-color:rgb(17, 40, 82) !important;
-  color: #fff !important;
-  padding: 0.9rem 1.5rem;
-  font-size: 1rem;
-}
-
-/* ===== TÁCH TỪ inline style: các class nhỏ ===== */
-.h2-red { color:rgb(17, 40, 82); }
-.h2-18 { font-size: 1.8rem; }
-.h2-mt-2 { margin-top: 2rem; }
-
-.map-mt-2 { margin-top: 2rem; }
-.map-embed iframe { border: 0; border-radius: 1rem; }
-
-/* ===== contact-intro-box (nếu còn dùng) ===== */
-.contact-intro-box{
-  max-width: 880px;
-  margin: 1rem auto 0;
-  padding: 0.3rem 1.8rem;
-  border-radius: 999px;
-}
-.contact-intro-box p{
-  margin: 0;
-  font-size: 1.05rem;
-  color: #555;
-  line-height: 1.6;
-}
-
-/* ===== nút proceed trong cart (giữ nguyên) ===== */
-.cart-proceed-btn {
-  background-color:rgb(17, 40, 82) !important;
-  color: #fff !important;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 1rem;
-  transition: background 0.3s;
-}
-.cart-proceed-btn:hover { background-color:rgb(17, 40, 82) !important; }
-
-/* ===== INTRO TABS – FULL WIDTH BẰNG CONTACT-WRAP ===== */
-.intro-tabs-wrap{
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-top: 1.6rem;
-}
-
-/* khung trắng rộng bằng 2 cột bên dưới */
-.intro-tabs{
-  width: 100%;
-  max-width: 1200px;   /* 👈 BẰNG container của contact-wrap */
-  background: #fff;
-  border-radius: 28px;
-  padding: 0.8rem;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-}
-
-/* nội dung */
-.intro-tab{
-  padding: 1.4rem 2.8rem;
-  text-align: center;
-  border-radius: 22px;
-  color: #555;
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-
-
-/* active: chỉ đổi màu chữ, KHÔNG gạch chân */
-.intro-tab.active{
-  color: #111;
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 900px) {
-  .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
-  .contact-icon { width: 45px; height: 45px; font-size: 1.3rem; }
-  .social-links i { font-size: 1.8rem; }
-}
-.contact-cards{
-  margin-top: 1.4rem;  
-}
-/* ===== CONTACT INFO: cho nhiều card vẫn đẹp ===== */
 .contact-cards{
   display: grid;
   gap: 1rem;
@@ -201,10 +70,70 @@
 }
 
 .contact-card{
-  margin-bottom: 0; /* vì đã dùng gap */
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem;
+  background: #f9f9f9;
+  border-radius: 1rem;
+  transition: transform .3s;
 }
 
-/* ===== FORM: label trên - input full width, đều nhau ===== */
+.contact-card:hover{
+  transform: translateY(-4px);
+}
+
+.contact-icon{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 12px rgba(255,0,0,.1);
+}
+
+.contact-icon i,
+.social-links i{
+  color: var(--primary);
+}
+
+@media (max-width: 900px){
+  .contact-icon{
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
+  }
+}
+
+/* ================== SOCIAL ================== */
+.social-links{
+  display: flex;
+  justify-content: center;
+  gap: 1.8rem;
+  margin: 1.8rem 0;
+}
+
+.social-links i{
+  font-size: 2rem;
+}
+
+@media (max-width: 900px){
+  .social-links i{
+    font-size: 1.8rem;
+  }
+}
+
+/* ================== CONTACT FORM ================== */
+.contact-form{
+  background: var(--bg-light);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
 .contact-form p{
   margin: .4rem 0 1rem;
   line-height: 1.5;
@@ -212,37 +141,107 @@
 
 .form-row{
   display: flex;
-  flex-direction: column;   /* label lên trên */
+  flex-direction: column;
   gap: .45rem;
   margin-top: 1rem;
 }
 
 .form-row label{
   font-weight: 600;
-  color: #111;
+  color: var(--text-dark);
 }
 
 .form-row input,
 .form-row textarea{
   width: 100%;
-  box-sizing: border-box;
-  border: 1px solid #e7e7e7;
-  border-radius: 12px;
   padding: .9rem 1rem;
   font-size: 1rem;
+  border-radius: 12px;
+  border: 1px solid #e7e7e7;
   outline: none;
 }
 
 .form-row input:focus,
 .form-row textarea:focus{
-  border-color:rgb(17, 40, 82);
-  box-shadow: 0 0 0 4px rgba(230,0,18,.12);
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(17,40,82,.12);
 }
 
-/* button full đẹp hơn (nếu bạn muốn) */
+.contact-confirm{
+  display: none;
+  margin-top: 1.2rem;
+  padding: 1rem;
+  background: #e6f7ff;
+  color: #0066cc;
+  border-radius: .8rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* ================== BUTTONS ================== */
 .primary-btn{
   width: 100%;
-  border-radius: 999px;
   padding: 1rem 1.2rem;
   font-size: 1.2rem;
+  border-radius: 999px;
+  background: var(--primary) !important;
+  color: #fff !important;
+  border: none;
+  cursor: pointer;
 }
+
+.cart-proceed-btn{
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  background: var(--primary) !important;
+  color: #fff !important;
+  border: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+/* ================== INTRO TABS ================== */
+.intro-tabs-wrap{
+  display: flex;
+  justify-content: center;
+  margin-top: 1.6rem;
+}
+
+.intro-tabs{
+  width: 100%;
+  max-width: 1200px;
+  padding: .8rem;
+  background: #fff;
+  border-radius: 28px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+}
+
+.intro-tab{
+  padding: 1.4rem 2.8rem;
+  text-align: center;
+  border-radius: 22px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-gray);
+}
+
+.intro-tab.active{
+  color: var(--text-dark);
+}
+
+/* ================== MAP ================== */
+.map-mt-2{
+  margin-top: 2rem;
+}
+
+.map-embed iframe{
+  border: 0;
+  border-radius: 1rem;
+}
+
+/* ================== UTILITIES ================== */
+.h2-red{ color: var(--primary); }
+.h2-18{ font-size: 1.8rem; }
+.h2-mt-2{ margin-top: 2rem; }

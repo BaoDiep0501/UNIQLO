@@ -162,9 +162,6 @@
       // search q
       if (q && !normalizeText(p.name).includes(q)) return false;
 
-      // size
-      if (size !== "all" && Array.isArray(p.sizes) && !p.sizes.includes(size)) return false;
-
       // ✅ color filter theo colorIds
       if (color !== "all") {
         const ids = Array.isArray(p.colorIds) ? p.colorIds : [];
