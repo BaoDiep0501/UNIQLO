@@ -1,64 +1,68 @@
-/* ===== CHECKOUT PAGE ===== */
-(function(){
-  const products = window.PRODUCTS || [];
+let cart = [
+  { id: 13, name: "HEATTECH pha cashmere", size: "M", price: 799000 },
+  { id: 14, name: "Áo khoác phao ngắn không đường may", size: "L", price: 1099000 }
+];
+const items = document.getElementById("cartList");
 
-  function renderCart(){
-    const cartItemsEl = document.getElementById("cartItems");
-    const cartSummaryEl = document.getElementById("cartSummary");
-    const cart = window.CartStore.get();
+function renderCart() {
+  items.innerHTML = "";
 
-    if(!cartItemsEl || !cartSummaryEl) return;
-
-    if(cart.length === 0){
-      cartItemsEl.innerHTML = "<p>Giỏ hàng trống.</p>";
-      cartSummaryEl.textContent = "";
-      return;
-    }
-
-    cartItemsEl.innerHTML = "";
-    let subtotal = 0;
-
-    cart.forEach((item, idx)=>{
-      const p = products.find(x=>x.id === item.id);
-      if(!p) return;
-      const row = document.createElement("div");
-      row.className = "cart-item";
-      const lineTotal = p.price * (item.qty||1);
-      subtotal += lineTotal;
-
-      row.innerHTML = `
-        <span>${p.name} · Size ${item.size || "M"} ×${item.qty || 1}</span>
-        <span>${formatPrice(lineTotal)}</span>
-      `;
-      cartItemsEl.appendChild(row);
-    });
-
-    cartSummaryEl.textContent = `Tổng: ${formatPrice(subtotal)}`;
+  if (cart.length === 0) {
+    items.innerHTML = 
+    `<p class="empty-cart"> Giỏ hàng của bạn đang trống</p>`;
+    updateTotal();
+    return;
   }
 
-  function setupForm(){
-    const form = document.getElementById("checkoutForm");
-    const msg = document.getElementById("checkoutMessage");
-    const sendCodeBtn = document.getElementById("sendCodeBtn");
-    if(sendCodeBtn){
-      sendCodeBtn.onclick = ()=>{
-        alert("Đã gửi mã (demo). Bạn nhập bất kỳ để tiếp tục nhé.");
-      };
-    }
-    if(!form || !msg) return;
+  cart.forEach(item => {
+    items.innerHTML += `
+      <label class="cart-item">
+        <input type="checkbox" checked data-price="${item.price}">
 
-    form.addEventListener("submit",(e)=>{
-      e.preventDefault();
-      msg.textContent = "✅ Thanh toán thành công (demo). Cảm ơn bạn!";
-      window.CartStore.clear();
-      renderCart();
-      setTimeout(()=> msg.textContent = "", 3500);
-      form.reset();
-    });
-  }
+        <div class="cart-info">
+          <div class="cart-name">${item.name}</div>
+          <div class="cart-meta">Size ${item.size}</div>
+        </div>
 
-  document.addEventListener("DOMContentLoaded", ()=>{
-    renderCart();
-    setupForm();
+        <div class="cart-actions">
+          <span class="cart-price">${item.price.toLocaleString("vi-VN")}đ</span>
+          <button class="cart-remove" data-id="${item.id}">−</button>
+        </div>
+      </label>
+    `;
   });
-})();
+
+  updateTotal();
+}
+
+document.addEventListener("click", function (e) {
+  if (e.target.classList.contains("cart-remove")) {
+    const id = Number(e.target.dataset.id);
+    cart = cart.filter(item => item.id !== id);
+    renderCart();
+  }
+});
+
+
+const totalPriceEl = document.getElementById("totalPrice");
+
+document.addEventListener("change", function (e) {
+  if (e.target.matches(".cart-item input[type='checkbox']")) {
+    updateTotal();
+  }
+});
+
+function updateTotal() {
+  let total = 0; //đặt biến tính tổng đơn hàng = 0
+
+  document.querySelectorAll(".cart-item input[type='checkbox']")
+    .forEach(checkbox => {
+      if (checkbox.checked) {
+        const price = Number(checkbox.dataset.price); //đọc giá của đơn hàng
+        total += price;
+      }
+    });
+
+  totalPriceEl.textContent = total.toLocaleString("vi-VN") + "đ";
+}
+renderCart();

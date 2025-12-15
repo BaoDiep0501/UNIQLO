@@ -198,6 +198,11 @@
     if (g && ["female", "male", "all"].includes(g)) {
       currentGender = g;
     }
+
+    const catFromUrl = getQueryParam("category");
+    if (catFromUrl && filterCategory) {
+      filterCategory.value = catFromUrl;
+    }
     setActiveGenderButton();
 
     // bind gender (CHỈ 1 LẦN)

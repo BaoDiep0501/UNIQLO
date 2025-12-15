@@ -1,53 +1,102 @@
 /* === == CHECKOUT / MEMBERSHIP FORMS == === */
-.checkout-form,
-.membership-form {
-  margin-top: 1rem;
-  background: #D6EFFF;
-  border-radius: 0.75rem;
-  padding: 1rem;
+.checkout-page {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-.form-row {
-  margin-bottom: 0.75rem;
+.checkout-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+.checkout-layout {
+  display: grid;
+  position:relative;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 2rem;
+}
+
+.checkout-cart {
+  background: #f7f9fc;
+  padding: 1.5rem;
+  border-radius: 1rem;
+}
+.cart-list {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 1rem;
 }
 
-.form-row.inline {
-  flex-direction: row;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.form-row label {
-  font-size: 0.85rem;
-}
-
-.form-row input,
-.form-row textarea,
-.form-row select {
-  padding: 0.35rem 0.5rem;
-  border-radius: 0.4rem;
-  border: 1px solid #1C1C1C;
-  font-size: 0.9rem;
-}
-
-.checkout-message {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  color: #0b7a0b;
-}
-
-.membership-layout {
+.cart-item {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 1.5rem;
-  margin-top: 1rem;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
 }
 
-.membership-info {
-  background: #D6EFFF;
-  border-radius: 0.75rem;
-  padding: 1rem;
+.cart-name {
+  font-weight: 600;
+}
+
+.cart-meta {
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.cart-price {
+  font-weight: 600;
+}
+.checkout-payment {
+  color:rgb(17, 40, 82);
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.cart-remove{
+  width: 20px;
+  border-radius: 50%;
+  border: 0;
+  background: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  color: #111;
+}
+
+.checkout-payment label {
+  display: block;
+  margin-bottom: 1rem;
+  color:rgb(17, 40, 82);
+}
+
+.checkout-payment input[type="text"] {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  margin-top: 0.4rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+}
+.payment-method label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+.checkout-summary {
+  margin: 1.5rem 0;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.checkout-summary div {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+}
+.checkout-header,.checkout-header a{
+  color:rgb(17, 40, 82);
+  text-decoration: none;
 }
