@@ -1,110 +1,128 @@
-/* ===== CHECKOUT PAGE ===== */
-
-const cartList = document.getElementById("cartList");
+const items = document.getElementById("cartList");
+const successPopup = document.getElementById("successPopup");
+const closePopupBtn = document.getElementById("closePopupBtn");
+const checkoutBtn = document.getElementById("checkoutBtn");
 const totalPriceEl = document.getElementById("totalPrice");
 
-let cart = [];
+document.addEventListener("DOMContentLoaded", function () {
+  fillCustomerInfoFromContact();
+  renderCart();
 
-/* ===== LOAD DATA FROM CONTACT ===== */
-function loadCartFromStorage() {
-  const raw = localStorage.getItem("UNIQLO_CART");
-  if (!raw) return;
+  // REMOVE ITEM
+  document.addEventListener("click", function (e) {
+    const btn = e.target.closest(".cart-remove");
+    if (!btn) return;
+    const index = Number(btn.dataset.index);
 
-  try {
-    const data = JSON.parse(raw);
-    cart = data.map((it, index) => {
-      const product = (window.PRODUCTS || []).find(p => p.id === it.id);
+    let cart = CartStore.get();
+    cart.splice(index, 1); // xóa đúng 1 item
+    CartStore.save(cart);
 
-      return {
-        id: index + 1,
-        name: product?.name || "Sản phẩm",
-        size: it.size,
-        color: it.color,
-        qty: it.qty,
-        price: product?.price || 0
-      };
-    });
-  } catch (e) {
-    console.error("Không đọc được giỏ hàng", e);
-  }
-}
+    renderCart();
+  });
 
+
+  // CHECKOUT
+  checkoutBtn.addEventListener("click", function () {
+    const checkedItems = document.querySelectorAll(
+      ".cart-item input[type='checkbox']:checked"
+    );
+
+    if (checkedItems.length === 0) {
+      alert("Vui lòng chọn ít nhất 1 sản phẩm để thanh toán");
+      return;
+    }
+
+    successPopup.classList.add("show");
+  });
+
+  // CLOSE POPUP + REMOVE PAID ITEMS
+closePopupBtn.addEventListener("click", function () {
+  let cart = CartStore.get();
+
+  const checkedIndexes = [];
+
+  document.querySelectorAll(
+    ".cart-item input[type='checkbox']:checked"
+  ).forEach(cb => {
+    const itemEl = cb.closest(".cart-item");
+    const index = Number(
+      itemEl.querySelector(".cart-remove").dataset.index
+    );
+    checkedIndexes.push(index);
+  });
+
+  checkedIndexes.sort((a, b) => b - a).forEach(i => {
+    cart.splice(i, 1);
+  });
+
+  CartStore.set(cart);
+  successPopup.classList.remove("show");
+  renderCart();
+});
+
+  // CHECKBOX CHANGE
+  document.addEventListener("change", function (e) {
+    if (e.target.matches(".cart-item input[type='checkbox']")) {
+      updateTotal();
+    }
+  });
+});
 
 /* ===== RENDER CART ===== */
 function renderCart() {
-  cartList.innerHTML = "";
+  const cart = CartStore.get();
+  items.innerHTML = "";
 
-  if (cart.length === 0) {
-    cartList.innerHTML =
-      `<p class="empty-cart">Giỏ hàng của bạn đang trống</p>`;
-    updateTotal();
+  if (!cart.length) {
+    items.innerHTML = `
+      <div class="empty-cart">
+        <p>Giỏ hàng của bạn đang trống</p>
+      </div>
+    `;
+    totalPriceEl.textContent = "0đ";
     return;
   }
 
-  cart.forEach(item => {
-    cartList.innerHTML += `
-      <label class="cart-item">
-        <input 
-          type="checkbox" 
-          checked 
-          data-price="${item.price * item.qty}"
-        >
+  cart.forEach((item, index) => {
+    const product = window.PRODUCTS.find(p => p.id === item.id);
+    if (!product) return;
+
+    const price = product.price * item.qty;
+
+    items.innerHTML += `
+      <div class="cart-item">
+        <label class="cart-check">
+          <input type="checkbox" checked data-price="${price}">
+        </label>
 
         <div class="cart-info">
-          <div class="cart-name">${item.name}</div>
+          <div class="cart-name">${product.name}</div>
           <div class="cart-meta">
-          Màu ${window.COLOR_MAP?.[item.color]?.name || "—"} · 
-            Size ${item.size|| "—"} · 
+            Size ${item.size} · 
+            Màu ${window.COLOR_MAP?.[item.color]?.name || "—"} · 
             SL ${item.qty}
           </div>
         </div>
 
         <div class="cart-actions">
           <span class="cart-price">
-            ${(item.price * item.qty).toLocaleString("vi-VN")}đ
+            ${price.toLocaleString("vi-VN")}đ
           </span>
-          <button class="cart-remove" data-id="${item.id}">−</button>
+          <button class="cart-remove" data-index="${index}">−</button>
         </div>
-      </label>
+      </div>
     `;
+
   });
 
   updateTotal();
 }
 
-/* ===== REMOVE ITEM ===== */
-document.addEventListener("click", function (e) {
-  if (e.target.classList.contains("cart-remove")) {
-    const id = Number(e.target.dataset.id);
-    cart = cart.filter(item => item.id !== id);
-    const storeCart = cart.map(it => ({
-  id: it.productId,
-  size: it.size,
-  color: it.color,
-  qty: it.qty
-}));
-
-localStorage.setItem("UNIQLO_CART", JSON.stringify(storeCart));
-
-// 🔄 cập nhật badge
-window.CartStore.updateBadge();
-
-renderCart();
-  }
-});
-
-/* ===== UPDATE TOTAL ===== */
-document.addEventListener("change", function (e) {
-  if (e.target.matches(".cart-item input[type='checkbox']")) {
-    updateTotal();
-  }
-});
-
 function updateTotal() {
   let total = 0;
 
-  document
-    .querySelectorAll(".cart-item input[type='checkbox']")
+  document.querySelectorAll(".cart-item input[type='checkbox']")
     .forEach(cb => {
       if (cb.checked) {
         total += Number(cb.dataset.price);
@@ -113,7 +131,21 @@ function updateTotal() {
 
   totalPriceEl.textContent = total.toLocaleString("vi-VN") + "đ";
 }
+function fillCustomerInfoFromContact() {
+  const raw = localStorage.getItem("uniqloCustomerInfo");
+  if (!raw) return;
 
-/* ===== INIT ===== */
-loadCartFromStorage();
-renderCart();
+  try {
+    const info = JSON.parse(raw);
+
+    const nameEl = document.getElementById("contactName");
+    const phoneEl = document.getElementById("contactPhone");
+    const emailEl = document.getElementById("contactEmail");
+
+    if (nameEl && info.name) nameEl.value = info.name;
+    if (phoneEl && info.phone) phoneEl.value = info.phone;
+    if (emailEl && info.email) emailEl.value = info.email;
+  } catch (e) {
+    console.warn("Không thể parse uniqloCustomerInfo", e);
+  }
+}

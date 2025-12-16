@@ -42,7 +42,7 @@
                 </a>
               </div>           
               <div class="cart-list" id="cartList">
-                <!-- JS render item -->
+                <!-- JS sẽ bổ sung -->
               </div>
             </div>
             <!-- CỘT PHẢI: THANH TOÁN -->
@@ -50,20 +50,22 @@
               <h2>Thông tin thanh toán</h2>
               <label>
                 Họ và tên
-                <input type="text" placeholder="Nguyễn Văn A">
+                <input type="text" id="contactName" placeholder="Nguyễn Văn A" required type="text" />
               </label>
               <label>
-                Email / Số điện thoại
-                <input type="text" placeholder="email hoặc số điện thoại">
+                Số điện thoại
+                <input type="tel" id="contactPhone"  placeholder="090xxxxxxx" required type="tel" pattern="[0-9]{9,11}" >
+              </label>
+              <label>
+                Email
+                <input type="email" id="contactEmail" placeholder="example@email.com" type="email" />
               </label>
               <div class="payment-method">
                 <label>
-                  <input type="radio" name="pay" checked>
-                  Thanh toán khi nhận hàng
+                  <input type="radio" name="pay" checked>Thanh toán khi nhận hàng
                 </label>
                 <label>
-                  <input type="radio" name="pay">
-                  Chuyển khoản
+                  <input type="radio" name="pay">Chuyển khoản
                 </label>
               </div>
               <div class="checkout-summary">
@@ -72,13 +74,23 @@
                   <strong id="totalPrice">0đ</strong>
                 </div>
               </div>
-              <button class="primary-btn">
+              <button class="primary-btn" id="checkoutBtn">
                 Xác nhận thanh toán
               </button>
             </div>
           </div>
         </div>
       </main>
+      <div class="popup-overlay" id="successPopup">
+          <div class="popup-box">
+            <button class="popup-close" id="closePopupBtn" aria-label="Đóng">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <h3>Thanh toán thành công</h3>
+            <p>Cảm ơn bạn đã mua sắm tại UNIQLO</p>
+          </div>
+      </div>
       <!-- ===== FOOTER ===== -->
       <footer class="main-footer">
         <div class="footer-top">

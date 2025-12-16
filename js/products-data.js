@@ -1,12 +1,12 @@
 window.COLOR_MAP = {
   den:   { name: "Đen",   hex: "#111111" },
   trang: { name: "Trắng", hex: "#ffffff" },
-  nau:   { name: "Nâu",   hex: "#8b4513" },
+  nau:   { name: "Nâu",   hex: "#67320cff"},
   xam:   { name: "Xám",   hex: "#9aa0a6" },
   be:    { name: "Be",    hex: "#e8d9c2" },
   do:    { name: "Đỏ",    hex: "#E60012" },
-  xanh:    { name: "Xanh",    hex: "#4A90E2" },
-};
+  xanh:  { name: "Xanh",    hex: "#4A90E2" },}
+
 // ===== MOCK DATA SẢN PHẨM (giữ nguyên từ file cũ) =====
 window.PRODUCTS = [
   { id: 1, name: "Cadigan", gender: "female", category: "outer", price: 1299000, oldPrice: 1899000,

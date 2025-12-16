@@ -30,6 +30,7 @@
   }
 
   function render(){
+    let selectedColorId = null;
     const id = getId();
     const p = products.find(x=>x.id === id);
     if(!p){
@@ -81,13 +82,15 @@
     idsToUse.forEach((id, i) => {
       const c = COLOR_MAP[id];
       if (!c) return;
+      if (i === 0) selectedColorId = id;
 
       const b = document.createElement("div");
       b.className = "color-btn" + (i === 0 ? " active" : "");
-      b.style.backgroundColor = c.hex;   // ✅ màu trơn
+      b.style.backgroundColor = c.hex;  
       b.title = c.name;
 
       b.onclick = () => {
+        selectedColorId = id;      
         setActive("#detailColorOptions .color-btn", b);
 
         // ✅ đổi ảnh theo màu
@@ -115,14 +118,21 @@
     };
 
     /* ===== ADD TO CART ===== */
-    $("detailAddToCart").onclick = ()=>{
+   $("detailAddToCart").onclick = ()=>{
       const activeSize = document.querySelector(".size-options .size-btn.active");
       const size = activeSize ? activeSize.textContent.trim() : "M";
       const qty = Number($("qtyInput").value || 1);
+      window.CartStore.add({
+        id: p.id,
+        size,
+        color: selectedColorId,
+        qty
+      });
+      const colorName = window.COLOR_MAP?.[selectedColorId]?.name || "—";
 
-      window.CartStore.add({ id: p.id, size, qty });
-      alert(`Đã thêm ${p.name} - Size ${size} ×${qty} vào giỏ hàng!`);
+      alert(`Đã thêm ${p.name} - Size ${size} · Màu ${colorName} · SL ${qty} vào giỏ hàng!`);
     };
+
 
     /* ===== BUY NOW ===== */
     const buyBtn = document.querySelector(".buy-now");
@@ -131,7 +141,13 @@
         const activeSize = document.querySelector(".size-options .size-btn.active");
         const size = activeSize ? activeSize.textContent.trim() : "M";
         const qty = Number($("qtyInput").value || 1);
-        window.CartStore.add({ id: p.id, size, qty });
+
+        window.CartStore.add({
+          id: p.id,
+          size,
+          color: selectedColorId,
+          qty
+        });
         window.location.href = "checkout.html";
       };
     }
