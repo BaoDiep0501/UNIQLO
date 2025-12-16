@@ -107,10 +107,25 @@
     });
 
     info.querySelector(".add-cart-btn").addEventListener("click", (e) => {
-      e.stopPropagation();
-      window.CartStore?.add?.({ id: p.id, size: selectedSize, qty: 1 });
-      alert(`Đã thêm "${p.name}" - Size ${selectedSize} vào giỏ hàng!`);
-    });
+  e.stopPropagation();
+
+  const color =
+    Array.isArray(p.colorIds) && p.colorIds.length
+      ? p.colorIds[0]
+      : null;
+
+  window.CartStore.add({
+    id: p.id,
+    size: selectedSize,
+    color: color,
+    qty: 1
+  });
+
+  alert(
+    `Đã thêm "${p.name}" - Size ${selectedSize}` +
+    (color ? ` - Màu ${window.COLOR_MAP?.[color]?.name || color}` : "")
+  );
+});
 
     card.appendChild(imgDiv);
     card.appendChild(info);

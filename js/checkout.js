@@ -1,31 +1,68 @@
-let cart = [
-  { id: 13, name: "HEATTECH pha cashmere", size: "M", price: 799000 },
-  { id: 14, name: "Áo khoác phao ngắn không đường may", size: "L", price: 1099000 }
-];
-const items = document.getElementById("cartList");
+/* ===== CHECKOUT PAGE ===== */
 
+const cartList = document.getElementById("cartList");
+const totalPriceEl = document.getElementById("totalPrice");
+
+let cart = [];
+
+/* ===== LOAD DATA FROM CONTACT ===== */
+function loadCartFromStorage() {
+  const raw = localStorage.getItem("UNIQLO_CART");
+  if (!raw) return;
+
+  try {
+    const data = JSON.parse(raw);
+    cart = data.map((it, index) => {
+      const product = (window.PRODUCTS || []).find(p => p.id === it.id);
+
+      return {
+        id: index + 1,
+        name: product?.name || "Sản phẩm",
+        size: it.size,
+        color: it.color,
+        qty: it.qty,
+        price: product?.price || 0
+      };
+    });
+  } catch (e) {
+    console.error("Không đọc được giỏ hàng", e);
+  }
+}
+
+
+/* ===== RENDER CART ===== */
 function renderCart() {
-  items.innerHTML = "";
+  cartList.innerHTML = "";
 
   if (cart.length === 0) {
-    items.innerHTML = 
-    `<p class="empty-cart"> Giỏ hàng của bạn đang trống</p>`;
+    cartList.innerHTML =
+      `<p class="empty-cart">Giỏ hàng của bạn đang trống</p>`;
     updateTotal();
     return;
   }
 
   cart.forEach(item => {
-    items.innerHTML += `
+    cartList.innerHTML += `
       <label class="cart-item">
-        <input type="checkbox" checked data-price="${item.price}">
+        <input 
+          type="checkbox" 
+          checked 
+          data-price="${item.price * item.qty}"
+        >
 
         <div class="cart-info">
           <div class="cart-name">${item.name}</div>
-          <div class="cart-meta">Size ${item.size}</div>
+          <div class="cart-meta">
+          Màu ${window.COLOR_MAP?.[item.color]?.name || "—"} · 
+            Size ${item.size|| "—"} · 
+            SL ${item.qty}
+          </div>
         </div>
 
         <div class="cart-actions">
-          <span class="cart-price">${item.price.toLocaleString("vi-VN")}đ</span>
+          <span class="cart-price">
+            ${(item.price * item.qty).toLocaleString("vi-VN")}đ
+          </span>
           <button class="cart-remove" data-id="${item.id}">−</button>
         </div>
       </label>
@@ -35,17 +72,28 @@ function renderCart() {
   updateTotal();
 }
 
+/* ===== REMOVE ITEM ===== */
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("cart-remove")) {
     const id = Number(e.target.dataset.id);
     cart = cart.filter(item => item.id !== id);
-    renderCart();
+    const storeCart = cart.map(it => ({
+  id: it.productId,
+  size: it.size,
+  color: it.color,
+  qty: it.qty
+}));
+
+localStorage.setItem("UNIQLO_CART", JSON.stringify(storeCart));
+
+// 🔄 cập nhật badge
+window.CartStore.updateBadge();
+
+renderCart();
   }
 });
 
-
-const totalPriceEl = document.getElementById("totalPrice");
-
+/* ===== UPDATE TOTAL ===== */
 document.addEventListener("change", function (e) {
   if (e.target.matches(".cart-item input[type='checkbox']")) {
     updateTotal();
@@ -53,16 +101,19 @@ document.addEventListener("change", function (e) {
 });
 
 function updateTotal() {
-  let total = 0; //đặt biến tính tổng đơn hàng = 0
+  let total = 0;
 
-  document.querySelectorAll(".cart-item input[type='checkbox']")
-    .forEach(checkbox => {
-      if (checkbox.checked) {
-        const price = Number(checkbox.dataset.price); //đọc giá của đơn hàng
-        total += price;
+  document
+    .querySelectorAll(".cart-item input[type='checkbox']")
+    .forEach(cb => {
+      if (cb.checked) {
+        total += Number(cb.dataset.price);
       }
     });
 
   totalPriceEl.textContent = total.toLocaleString("vi-VN") + "đ";
 }
+
+/* ===== INIT ===== */
+loadCartFromStorage();
 renderCart();

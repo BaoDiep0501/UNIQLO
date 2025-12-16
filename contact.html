@@ -106,35 +106,59 @@
       </div>
 
       <!-- Form đặt hàng demo -->
-      <form class="contact-form" id="contactForm">
-  <h2 style="color:rgb(17, 40, 82); font-size: 1.8rem;">Form đặt hàng nhanh </h2>
-  <p style="font-size: 1rem;">Để lại thông tin, chúng tôi sẽ thêm sản phẩm vào giỏ và hỗ trợ thanh toán nhanh!</p>
+<form class="contact-form" id="contactForm">
+  <h2 style="color:rgb(17, 40, 82); font-size: 1.8rem;">Form đặt hàng nhanh</h2>
+  <p style="font-size: 1rem;">Để lại thông tin, chúng tôi sẽ hỗ trợ tư vấn và thanh toán nhanh!</p>
+
   <div class="form-row">
-  <label for="contactName">Họ và tên *</label>
-  <input id="contactName" placeholder="Nguyễn Văn A" required type="text" />
-</div>
+    <label for="contactName">Họ và tên *</label>
+    <input id="contactName" placeholder="Nguyễn Văn A" required type="text" />
+  </div>
 
-<div class="form-row">
-  <label for="contactPhone">Số điện thoại *</label>
-  <input id="contactPhone" placeholder="090xxxxxxx" required type="tel" pattern="[0-9]{9,11}" />
-</div>
+  <div class="form-row">
+    <label for="contactPhone">Số điện thoại *</label>
+    <input id="contactPhone" placeholder="090xxxxxxx" required type="tel" pattern="[0-9]{9,11}" />
+  </div>
 
-<div class="form-row">
-  <label for="contactEmail">Email (nếu có)</label>
-  <input id="contactEmail" placeholder="example@email.com" type="email" />
-</div>
-<div class="form-row">
-  <label for="contactProduct">Sản phẩm quan tâm *</label>
-  <input id="contactProduct" placeholder="Ví dụ: Áo thun AIRism, size M, màu đỏ" required type="text" />
-</div>
-<div class="form-row">
-  <label for="contactMessage">Ghi chú thêm</label>
-  <textarea id="contactMessage" placeholder="Số lượng, màu sắc, size, hoặc câu hỏi..." rows="4"></textarea>
-</div>
+  <div class="form-row">
+    <label for="contactEmail">Email (nếu có)</label>
+    <input id="contactEmail" placeholder="example@email.com" type="email" />
+  </div>
 
-  <button class="primary-btn cart-proceed-btn" >Tiến đến giỏ hàng để thanh toán</button>
+  <!-- Ô tìm kiếm sản phẩm với gợi ý -->
+  <div class="form-row">
+    <label for="productSearch">Tìm & chọn sản phẩm *</label>
+    <div class="product-search-wrapper" style="position: relative;">
+      <input 
+        type="text" 
+        id="productSearch" 
+        placeholder="Gõ tên sản phẩm... (ví dụ: Cadigan, Áo thun, HEATTECH)" 
+        autocomplete="off"
+      />
+      <div id="productSuggestions" class="product-suggestions"></div>
+    </div>
+  </div>
+
+  <!-- Danh sách sản phẩm đã chọn -->
+  <div id="selectedProductsList">
+    <h3 style="margin: 20px 0 10px; font-size: 1.3rem; color: #112852;">Sản phẩm đã chọn:</h3>
+    <div id="selectedProductsContainer"></div>
+    <p id="emptySelectedMsg" style="color: #888; font-style: italic;">
+      Chưa có sản phẩm nào được chọn.
+    </p>
+  </div>
+
+  <div class="form-row">
+    <label for="contactMessage">Ghi chú thêm</label>
+    <textarea id="contactMessage" placeholder="Yêu cầu đặc biệt, địa chỉ giao hàng..." rows="4"></textarea>
+  </div>
+
+  <button type="submit" class="primary-btn cart-proceed-btn">
+    Tiến đến giỏ hàng để thanh toán
+  </button>
+
   <div class="contact-confirm" id="contactConfirm">
-    <i class="fas fa-check-circle"></i> Đã lưu thông tin! Đang chuyển đến giỏ hàng... (demo)
+    <i class="fas fa-check-circle"></i> Đã lưu thông tin! Đang chuyển đến giỏ hàng... 
   </div>
 </form>
     </section>

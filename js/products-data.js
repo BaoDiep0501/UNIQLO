@@ -1,11 +1,11 @@
 window.COLOR_MAP = {
-  den:   { name: "den",   hex: "#111111" },
-  trang: { name: "trang", hex: "#ffffff" },
-  nau:   { name: "nau",   hex: "#8b4513" },
-  xam:   { name: "xam",   hex: "#9aa0a6" },
-  be:    { name: "be",    hex: "#e8d9c2" },
-  do:    { name: "do",    hex: "#E60012" },
-  xanh:    { name: "xanh",    hex: "#4A90E2" },
+  den:   { name: "Đen",   hex: "#111111" },
+  trang: { name: "Trắng", hex: "#ffffff" },
+  nau:   { name: "Nâu",   hex: "#8b4513" },
+  xam:   { name: "Xám",   hex: "#9aa0a6" },
+  be:    { name: "Be",    hex: "#e8d9c2" },
+  do:    { name: "Đỏ",    hex: "#E60012" },
+  xanh:    { name: "Xanh",    hex: "#4A90E2" },
 };
 // ===== MOCK DATA SẢN PHẨM (giữ nguyên từ file cũ) =====
 window.PRODUCTS = [

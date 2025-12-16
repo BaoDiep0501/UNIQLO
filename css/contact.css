@@ -10,11 +10,11 @@
 /* ================== HERO + CAROUSEL ================== */
 .hero-section{
   background: transparent;
-  padding: 2.2rem 0 1.2rem;
+  padding: 1.4rem 0 0.8rem;
 }
 
 .hero-section h1{
-  font-size: 2.8rem;
+  font-size: 2.2rem;
   color: var(--primary);
 }
 
@@ -245,3 +245,103 @@
 .h2-red{ color: var(--primary); }
 .h2-18{ font-size: 1.8rem; }
 .h2-mt-2{ margin-top: 2rem; }
+.product-search-wrapper {
+  position: relative;
+}
+
+#productSuggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-top: none;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: none;
+}
+
+.product-suggestion-item {
+  padding: 12px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.product-suggestion-item:hover {
+  background: #f5f5f5;
+}
+
+.product-suggestion-item img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.product-suggestion-info h4 {
+  margin: 0;
+  font-size: 1rem;
+  color: #112852;
+}
+
+.product-suggestion-info p {
+  margin: 4px 0 0;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Item đã chọn */
+.selected-product-item {
+  background: #f9f9f9;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+ .selected-product-item img {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+
+.selected-product-controls {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.selected-product-controls select,
+.selected-product-controls input {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.remove-item {
+  background: #e60012;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
