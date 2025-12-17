@@ -28,8 +28,8 @@
           </button>
         </div>
       </header>
-      <main class="page-container">
-        <div class="checkout-page">
+      <main>
+        <div>
           <h1 class="checkout-title">Thanh toán</h1>
           <div class="checkout-layout">
             <!-- CỘT TRÁI -->
@@ -38,7 +38,7 @@
                 <h2>Giỏ hàng</h2>
                 <a href="promo.html">
                   <i class="fa-solid fa-ticket"></i>
-                  Áp khuyến mãi
+                  Xem thêm khuyến mãi
                 </a>
               </div>           
               <div class="cart-list" id="cartList">
@@ -48,30 +48,57 @@
             <!-- CỘT PHẢI: THANH TOÁN -->
             <div class="checkout-payment">
               <h2>Thông tin thanh toán</h2>
+              <div class="info">
+                <div>
+                   <label>Họ và tên
+                    <input type="text" id="contactName" placeholder="Nguyễn Văn A" required type="text" />
+                  </label>
+                  <label>Số điện thoại
+                    <input type="tel" id="contactPhone"  placeholder="090xxxxxxx" required type="tel" pattern="[0-9]{9,11}" >
+                  </label>
+                </div>
+                <div>
+                  <label>Email
+                    <input type="email" id="contactEmail" placeholder="example@email.com" type="email" />
+                  </label>
+                  <label>Địa chỉ
+                  <input type="text" id="contactAddress" placeholder="Số nhà, đường, phường/xã"required />
+                </label>
+                </div>
+              </div>
+              
               <label>
-                Họ và tên
-                <input type="text" id="contactName" placeholder="Nguyễn Văn A" required type="text" />
+                Tỉnh / Thành phố
+                <select id="contactCity"required>
+                  <option value="">-- Chọn tỉnh / thành phố --</option>
+                </select>
               </label>
-              <label>
-                Số điện thoại
-                <input type="tel" id="contactPhone"  placeholder="090xxxxxxx" required type="tel" pattern="[0-9]{9,11}" >
-              </label>
-              <label>
-                Email
-                <input type="email" id="contactEmail" placeholder="example@email.com" type="email" />
-              </label>
+
               <div class="payment-method">
                 <label>
-                  <input type="radio" name="pay" checked>Thanh toán khi nhận hàng
+                  <input type="radio" name="pay" checked> Thanh toán khi nhận hàng
                 </label>
                 <label>
-                  <input type="radio" name="pay">Chuyển khoản
+                  <input type="radio" name="pay"> Chuyển khoản
                 </label>
               </div>
               <div class="checkout-summary">
                 <div>
                   <span>Tổng cộng</span>
                   <strong id="totalPrice">0đ</strong>
+                </div>
+                <div>
+                  <span>Tạm tính</span>
+                  <strong id="subTotalPrice">0đ</strong>
+                </div>
+                <div>
+                  <span>Phí vận chuyển</span>
+                  <strong id="shippingFee">0đ</strong>
+                </div>
+
+                <div class="checkout-total">
+                  <span>Thanh toán</span>
+                  <strong id="finalPrice">0đ</strong>
                 </div>
               </div>
               <button class="primary-btn" id="checkoutBtn">

@@ -440,7 +440,7 @@ main {
 /* Nếu bạn muốn to hơn nữa thì đổi thành 1.1rem hoặc 1.2rem */
 
 /* ===== PAGE WRAPPER ===== */
-.page-container { max-width: 1200px; margin: 1rem auto 3rem; padding: 0 1rem; flex: 1; }
+.page-container { max-width: 1400px; margin: 1rem auto 3rem; padding: 0 1rem; flex: 1; }
 
 /* FORCE footer full width dù bị bọc trong container */
 .main-footer{

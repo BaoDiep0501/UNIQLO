@@ -4,10 +4,36 @@ const closePopupBtn = document.getElementById("closePopupBtn");
 const checkoutBtn = document.getElementById("checkoutBtn");
 const totalPriceEl = document.getElementById("totalPrice");
 
+const VN_PROVINCES = [
+  // 28 tỉnh
+  "Tuyên Quang","Lào Cai","Thái Nguyên","Phú Thọ","Bắc Ninh","Hưng Yên", "Thanh Hóa","Nghệ An","Hà Tĩnh",
+  "Quảng Ninh","Sơn La","Lai Châu","Điện Biên","Cao Bằng","Quảng Trị","Quảng Ngãi","Gia Lai","Khánh Hòa",
+  "Lâm Đồng","Đắk Lắk","Đồng Nai","Tây Ninh","Vĩnh Long","Đồng Tháp","Cà Mau","An Giang","Ninh Bình"
+];
+const MAJOR_CITIES = ["TP Hà Nội",  "TP Hải Phòng",  "TP Huế",  "TP Đà Nẵng",  "TP Hồ Chí Minh",  "TP Cần Thơ",];
+
+function populateCities() {
+  const select = document.getElementById("contactCity");
+  if (!select) return;
+  select.innerHTML = '<option value="">-- Chọn tỉnh / thành phố --</option>';
+  MAJOR_CITIES.forEach(city => {
+    const opt = document.createElement("option");
+    opt.value = city;
+    opt.textContent = city;
+    select.appendChild(opt);
+  });
+
+  VN_PROVINCES.forEach(province => {
+    const opt = document.createElement("option");
+    opt.value = province;
+    opt.textContent = province;
+    select.appendChild(opt);
+  });
+}
 document.addEventListener("DOMContentLoaded", function () {
   fillCustomerInfoFromContact();
   renderCart();
-
+  populateCities()
   // REMOVE ITEM
   document.addEventListener("click", function (e) {
     const btn = e.target.closest(".cart-remove");
@@ -21,20 +47,21 @@ document.addEventListener("DOMContentLoaded", function () {
     renderCart();
   });
 
+  document.getElementById("contactCity")?.addEventListener("change", updateTotal);
 
   // CHECKOUT
   checkoutBtn.addEventListener("click", function () {
+    if (!validateCustomerInfo()) return;
     const checkedItems = document.querySelectorAll(
       ".cart-item input[type='checkbox']:checked"
     );
-
     if (checkedItems.length === 0) {
       alert("Vui lòng chọn ít nhất 1 sản phẩm để thanh toán");
       return;
     }
-
     successPopup.classList.add("show");
   });
+
 
   // CLOSE POPUP + REMOVE PAID ITEMS
 closePopupBtn.addEventListener("click", function () {
@@ -56,8 +83,9 @@ closePopupBtn.addEventListener("click", function () {
     cart.splice(i, 1);
   });
 
-  CartStore.set(cart);
+  CartStore.save(cart);
   successPopup.classList.remove("show");
+  localStorage.removeItem("uniqloCustomerInfo");
   renderCart();
 });
 
@@ -69,7 +97,7 @@ closePopupBtn.addEventListener("click", function () {
   });
 });
 
-/* ===== RENDER CART ===== */
+/*Load giỏ hàng*/
 function renderCart() {
   const cart = CartStore.get();
   items.innerHTML = "";
@@ -81,6 +109,7 @@ function renderCart() {
       </div>
     `;
     totalPriceEl.textContent = "0đ";
+    resetSummary();
     return;
   }
 
@@ -128,8 +157,16 @@ function updateTotal() {
         total += Number(cb.dataset.price);
       }
     });
+  const city = document.getElementById("contactCity")?.value || "";
+  const shipFee = calculateShippingFee(city); 
+  document.getElementById("subTotalPrice").textContent =
+    total.toLocaleString("vi-VN") + "đ";
 
-  totalPriceEl.textContent = total.toLocaleString("vi-VN") + "đ";
+  document.getElementById("shippingFee").textContent =
+    shipFee.toLocaleString("vi-VN") + "đ";
+
+  document.getElementById("finalPrice").textContent =
+    (total + shipFee).toLocaleString("vi-VN") + "đ";
 }
 function fillCustomerInfoFromContact() {
   const raw = localStorage.getItem("uniqloCustomerInfo");
@@ -138,14 +175,62 @@ function fillCustomerInfoFromContact() {
   try {
     const info = JSON.parse(raw);
 
-    const nameEl = document.getElementById("contactName");
-    const phoneEl = document.getElementById("contactPhone");
-    const emailEl = document.getElementById("contactEmail");
+    document.getElementById("contactName").value = info.name || "";
+    document.getElementById("contactPhone").value = info.phone || "";
+    document.getElementById("contactEmail").value = info.email || "";
+  } catch {}
+}
 
-    if (nameEl && info.name) nameEl.value = info.name;
-    if (phoneEl && info.phone) phoneEl.value = info.phone;
-    if (emailEl && info.email) emailEl.value = info.email;
-  } catch (e) {
-    console.warn("Không thể parse uniqloCustomerInfo", e);
+function validateCustomerInfo() {
+  const nameEl = document.getElementById("contactName");
+  const phoneEl = document.getElementById("contactPhone");
+  const emailEl = document.getElementById("contactEmail");
+  const addressEl = document.getElementById("contactAddress");
+  const cityEl = document.getElementById("contactCity");
+
+  const name = nameEl.value.trim();
+  const phone = phoneEl.value.trim();
+  const email = emailEl.value.trim();
+  const address = addressEl.value.trim();
+  const city = cityEl.value;
+
+  if (!name) {
+    alert("Vui lòng nhập họ và tên");
+    nameEl.focus();
+    return false;
   }
+
+  if (!phone && !email) {
+    alert("Vui lòng nhập số điện thoại hoặc email");
+    phoneEl.focus();
+    return false;
+  }
+  if (!address) {
+    alert("Vui lòng nhập địa chỉ nhận hàng");
+    addressEl.focus();
+    return false;
+  }
+
+  if (!city) {
+    alert("Vui lòng chọn tỉnh / thành phố");
+    cityEl.focus();
+    return false;
+  }
+
+  return true;
+}
+function calculateShippingFee(city) {
+  if (!city) return 0;
+  if (city.startsWith("TP Hồ Chí Minh")) {
+    return 15000; 
+  }
+  if (MAJOR_CITIES.some(c => city.startsWith(c))) {
+    return 25000;
+  }
+  return 35000;
+}
+function resetSummary() {
+  document.getElementById("subTotalPrice").textContent = "0đ";
+  document.getElementById("shippingFee").textContent = "0đ";
+  document.getElementById("finalPrice").textContent = "0đ";
 }
