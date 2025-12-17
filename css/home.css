@@ -48,8 +48,10 @@
   color: #fff;
   text-shadow: 0 2px 8px rgba(0,0,0,0.45);
 }
-
-
+.hero-text h1{
+  font-size: 3.5rem;
+  color:rgb(197, 0, 0);
+}
 .hero-text h2{
   font-size: 3rem;
 }
