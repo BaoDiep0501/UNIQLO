@@ -61,24 +61,3 @@
   font-weight: 700;
   letter-spacing: 0.06em;
 }
-
-.promo-list{
-  margin-top: 1rem;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
-}
-.promo-item{    
-  background: #ffffff;
-  border: 1px solid #bedfff;
-  border-radius: 0.9rem;
-  padding: 0.85rem 1rem;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
-}
-.promo-item h4{
-  margin-bottom: 0.25rem;
-}
-.promo-item:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}

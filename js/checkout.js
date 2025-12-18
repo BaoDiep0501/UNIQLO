@@ -2,7 +2,6 @@ const items = document.getElementById("cartList");
 const successPopup = document.getElementById("successPopup");
 const closePopupBtn = document.getElementById("closePopupBtn");
 const checkoutBtn = document.getElementById("checkoutBtn");
-const totalPriceEl = document.getElementById("totalPrice");
 
 const VN_PROVINCES = [
   // 28 tỉnh
@@ -108,7 +107,6 @@ function renderCart() {
         <p>Giỏ hàng của bạn đang trống</p>
       </div>
     `;
-    totalPriceEl.textContent = "0đ";
     resetSummary();
     return;
   }
